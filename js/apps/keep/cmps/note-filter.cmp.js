@@ -22,14 +22,14 @@ export default {
         },
         setFilter() {
             console.log('Setting Filter!');
-            this.$emit('filtered', this.filterBy)
+            this.$emit('filtered', {...this.filterBy})
         },
     },
     watch: {
         filterBy: {
             handler() {
                 console.log('yeh');
-                this.debounce(this.setFilter)
+                this.debounce(this.setFilter)()
             },
             deep: true
         }

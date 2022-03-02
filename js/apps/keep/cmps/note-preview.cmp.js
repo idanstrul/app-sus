@@ -1,3 +1,4 @@
+import { noteService } from "../services/note.service.js"
 import noteTxt from "./note-txt.cmp.js"
 import noteTodos from "./note-todos.cmp.js"
 import noteImg from "./note-img.cmp.js"
@@ -23,6 +24,7 @@ export default {
                 <option value="mark-brown">brown</option>
                 <option value="mark-grey">grey</option>
             </select>
+            <button @click="togglePin">Pin</button>
         </div>
     </section>
     `,
@@ -34,7 +36,13 @@ export default {
     },
     data(){
         return {
-            markClr: 'mark-default'
+            markClr: 'mark-default',
+        }
+    },
+    methods: {
+        togglePin(){
+            this.isPinned = !this.isPinned;
+            eventBus.emit('pinToggled', this.pinData)
         }
     }
 }
