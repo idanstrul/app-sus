@@ -2,20 +2,21 @@ import { emailService } from "../services/email.service.js";
 
 export default {
     template: `
-        <section class="email-details">
+        <section class="email-details" v-if="email">
             <div class="email-details-container">
                 <div class="email-actions">
             <h4>{{email.subject}}</h4>
             <div>
                 <span role="button">🗑</span>
-                <span role="button"></span>
-                <span role="button"></span>
+                <router-link to="/email-list">⮐</router-link>
+                <!-- <span role="button"></span> -->
             </div>
             </div>
             <h5>{{email.from}}</h5>
             <pre>{{email.txt}}</pre>
             </div>
         </section>
+        <section v-else class="loading">loading...</section>
     `,
     data() {
         return {

@@ -6,6 +6,7 @@ export default {
             <label>
                 search
                 <input type="text" @input="setFilter" ref="txtInput" v-model="criteria.txt" placeholder="Search text here">
+                <span role="checkbox" @click="setFilter" v-bind:class="{read:isRead}"></span>
             </label>
         </section>
     `,
@@ -28,9 +29,9 @@ export default {
     },
     methods: {
         setFilter() {
-            emailService.get(id)
+            emailService.query(criteria)
                 .then(email => {
-                    return this.email.id = emailId;
+                    return this.email = email;
                 })
         }
     }

@@ -1,5 +1,5 @@
-import { bookService } from "../services/books.service.js";
-import { eventBus } from "../services/eventBus.service.js";
+import { bookService } from "../../../book/js/services/books.service.js";
+import { eventBus } from "../../../../services/eventBus.service.js";
 
 export default {
     props: ['bookId'],

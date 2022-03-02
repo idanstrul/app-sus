@@ -9,7 +9,7 @@ export default {
         <section class="email-app">
             <email-filter />
             <email-folder-list />
-            <email-list :emails="emailsForDisplay"/>
+            <email-list />
         </section>
     `,
     components: {
@@ -19,7 +19,7 @@ export default {
     },
     data() {
         return {
-            emails: null,
+            emails: [],
             criteria: {
                 status: '',
                 txt: '',
@@ -29,9 +29,10 @@ export default {
             }
         }
     },
+    // TODO: fix created()
     created() {
-        emailService.query()
-            .then(emails => this.emails = emails);
+        // emailService.query()
+        //     .then(emails => { this.emails = emails });
     },
     methods: {
         setFilter(criteria) {
