@@ -1,0 +1,127 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: lightgray;
+    margin: 0 auto;
+}
+
+.app-footer,
+.app-header {
+    background-color: lightslategray;
+    height: 5vh;
+}
+
+.app-header {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.app-footer {
+    padding-left: 50%;
+}
+
+.app-main {
+    height: 90vh;
+}
+
+.book-filter {
+    margin: 5px;
+    padding: 5px;
+}
+
+.book-filter input {
+    margin-left: 5px;
+}
+
+.book-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    list-style-type: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-list li:hover {
+    cursor: pointer;
+}
+
+
+.book-details {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.712);
+    color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    line-height: 0.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px #050e01;
+}
+
+.book-details img {
+    width: 150px;
+}
+
+.review {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.712);
+    color: whitesmoke;
+    display: flex;
+
+}
+
+.review-add {
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
+    line-height: 0.5rem;
+    font-weight: bold;
+    text-shadow: 2px 2px #050e01;
+}
+
+
+button:hover {
+    cursor: pointer;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+
+.book-review {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.review-container {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
