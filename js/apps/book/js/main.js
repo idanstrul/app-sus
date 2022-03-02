@@ -1,18 +1,18 @@
 import { router } from './router.js';
-import appHeader from './cmps/app-header.cmp.js';
-import appFooter from './cmps/app-footer.cmp.js';
+import bookHeader from './cmps/book-header.cmp.js';
+import bookFooter from './cmps/book-footer.cmp.js';
 const options = {
     template: `
         <section>
-            <app-header />
+            <book-header />
             <router-view />
-            <app-footer />
+            <book-footer />
        </section>
     
     `,
     components: {
-        appHeader,
-        appFooter
+        bookHeader,
+        bookFooter
     },
     data() {
         return {}

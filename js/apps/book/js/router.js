@@ -1,17 +1,17 @@
 import bookApp from './views/book-app.cmp.js';
-import homePage from './views/home-page.cmp.js';
-import aboutPage from './views/about-page.cmp.js';
+import bookHomePage from './views/book-home-page.cmp.js'
+import bookAboutPage from './views/book-about-page.cmp.js';
 import bookDetails from './views/book-details.cmp.js';
 import bookReview from './views/book-review.cmp.js';
 
 const routes = [
     {
         path: '/',
-        component: homePage
+        component: bookHomePage
     },
     {
         path: '/about',
-        component: aboutPage
+        component: bookAboutPage
     },
     {
         path: '/book',
