@@ -7,7 +7,8 @@ _createEmails();
 export const emailService = {
     query,
     remove,
-    get
+    get,
+    save
 };
 
 function query(criteria) {
@@ -67,13 +68,13 @@ function getEmptyEmail(subject = '', body = '', sentAt, isRead, to = '') {
     };
 }
 
-const criteria = {
-    status: 'inbox/sent/trash/draft',
-    txt: 'puki', // no need to support complex text search
-    isRead: false, // (optional property, if missing: show all)
-    isStared: false, // (optional property, if missing: show all)
-    lables: ['important', 'romantic'] // has any of the labels
-}
+// const criteria = {
+//     status: 'inbox/sent/trash/draft',
+//     txt: 'puki', // no need to support complex text search
+//     isRead: false, // (optional property, if missing: show all)
+//     isStared: false, // (optional property, if missing: show all)
+//     lables: ['important', 'romantic'] // has any of the labels
+// }
 
 const loggedinUser = {
     email: 'user@appsus.com',
