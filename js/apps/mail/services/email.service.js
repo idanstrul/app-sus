@@ -12,16 +12,18 @@ export const emailService = {
 };
 
 function query(criteria) {
-    const emails = storageService.query(EMAIL_STORAGE_KEY);
-    return emails.filter(email => {
-        return email.status === criteria.status &&
-            email.txt.includes(criteria.txt) &&
-            email.isRead === criteria.isRead &&
-            email.isStared === criteria.isStared &&
-            criteria.lables.every(function (label) {
-                return email.labels.indexOf(label) !== -1;
-            })
+    const emails = storageService.query(EMAIL_STORAGE_KEY).then(emails => {
+        return emails.filter(email => {
+            return email.status === criteria.status &&
+                email.txt.includes(criteria.txt) &&
+                email.isRead === criteria.isRead &&
+                email.isStared === criteria.isStared &&
+                criteria.lables.every(function (label) {
+                    return email.labels.indexOf(label) !== -1;
+                })
+        })
     })
+    return emails;
 }
 
 function remove(emailId) {

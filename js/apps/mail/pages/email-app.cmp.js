@@ -29,10 +29,8 @@ export default {
             }
         }
     },
-    // TODO: fix created()
     created() {
-        // emailService.query()
-        //     .then(emails => { this.emails = emails });
+        emailService.query(this.criteria).then(emails => this.emails = emails);
     },
     methods: {
         setFilter(criteria) {
