@@ -1,0 +1,47 @@
+.mark-default{
+    background-color: var(--mark-clr-default);
+}
+
+.mark-red{
+    background-color: var(--mark-clr-red);
+}
+
+.mark-orange{
+    background-color: var(--mark-clr-orange);
+}
+
+.mark-yellow{
+    background-color: var(--mark-clr-yellow);
+}
+
+.mark-green{
+    background-color: var(--mark-clr-green);
+}
+
+.mark-green-blue{
+    background-color: var(--mark-clr-green-blue);
+}
+
+.mark-blue{
+    background-color: var(--mark-clr-blue);
+}
+
+.mark-dark-blue{
+    background-color: var(--mark-clr-dark-blue);
+}
+
+.mark-purple{
+    background-color: var(--mark-clr-purple);
+}
+
+.mark-pink{
+    background-color: var(--mark-clr-pink);
+}
+
+.mark-brown{
+    background-color: var(--mark-clr-brown);
+}
+
+.mark-grey{
+    background-color: var(--mark-clr-grey);
+}

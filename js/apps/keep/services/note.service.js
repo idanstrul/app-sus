@@ -1,3 +1,7 @@
+export const noteService = {
+    getNotes
+}
+
 const notes = [
     {
         id: "n101",
@@ -11,7 +15,7 @@ const notes = [
         id: "n102",
         type: "note-img",
         info: {
-            url: "http://some-img/me",
+            url: "assets/keep/google-dog-search-2014-01.jpg.optimal.jpg",
             title: "Bobi and Me"
         },
         style: {
@@ -30,3 +34,7 @@ const notes = [
         }
     }
 ];
+
+function getNotes(){
+    return notes
+}
