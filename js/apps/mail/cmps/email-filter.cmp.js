@@ -7,7 +7,10 @@ export default {
             <label>
                 search
                 <input type="text" @input="setFilter" ref="txtInput" v-model="criteria.txt" placeholder="Search text here">
-                <span role="checkbox" @click="setFilter"></span>
+                <select @change="setFilter">
+                    <option value="read">Read</option>
+                    <option value="unread">Unread</option>
+                </select>
             </label>
         </section>
     `,

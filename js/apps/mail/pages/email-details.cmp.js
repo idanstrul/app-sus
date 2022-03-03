@@ -8,9 +8,9 @@ export default {
                 <div class="email-actions">
             <h4>{{email.subject}}</h4>
             <div>
-                <span role="button">🗑</span>
-                <router-link to="/email-list">⮐</router-link>
-                <!-- <span role="button"></span> -->
+                <span role="button" @click="deleteEmail(); $router.push('/email')">🗑</span>
+                <button @click="$router.push('/email')">⮐</button>
+                <span>{{displayTime}}</span>
             </div>
             </div>
             <pre>{{email.body}}</pre>
@@ -24,17 +24,27 @@ export default {
         }
     },
     created() {
-        console.log('email created');
+        const { emailId } = this.$route.params;
+        emailService.get(emailId)
+            .then(email => this.email = email);
     },
     computed: {
         emailId() {
             return this.$route.params.emailId;
-        }
+        },
+        displayTime() {
+            let timestamp = this.email.sentAt;
+            let myDate = new Date(timestamp).toLocaleDateString()
+            return myDate;
+        },
     },
     methods: {
         loadEmail() {
             emailService.get(this.emailId).then(email => this.email = email);
         },
+        deleteEmail() {
+            emailService.remove(this.emailId).then(email => this.email = email);
+        }
         // isUserLoggedIn(loggedinUser) {
         //     if (loggedinUser) {
         //         let emails = emails.forEach(email => {

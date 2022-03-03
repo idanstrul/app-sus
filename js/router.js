@@ -3,6 +3,7 @@ import aboutPage from "./pages/about-page.cmp.js";
 import bookApp from "./apps/book/js/views/book-app.cmp.js";
 import noteIndex from "./apps/keep/pages/note-index.cmp.js";
 import emailApp from "./apps/mail/pages/email-app.cmp.js";
+import emailDetails from "./apps/mail/pages/email-details.cmp.js";
 
 const routes = [
     {
@@ -23,7 +24,11 @@ const routes = [
     },
     {
         path: '/email',
-        component: emailApp
+        component: emailApp,
+    },
+    {
+        path: '/email/:emailId',
+        component: emailDetails
     }
 
 
