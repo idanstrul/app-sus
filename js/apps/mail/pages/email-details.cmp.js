@@ -13,8 +13,7 @@ export default {
                 <!-- <span role="button"></span> -->
             </div>
             </div>
-            <h5>{{email.from}}</h5>
-            <pre>{{email.txt}}</pre>
+            <pre>{{email.body}}</pre>
             </div>
         </section>
         <section v-else class="loading">loading...</section>
@@ -34,22 +33,26 @@ export default {
     },
     methods: {
         loadEmail() {
-            emailService.get(this.emailId)
-                .then(email => this.email = email);
+            emailService.get(this.emailId).then(email => this.email = email);
         },
-        setFilter(criteria) {
-            this.criteria = criteria;
-        },
-        isUserLoggedIn(loggedinUser) {
-            if (loggedinUser) {
-                let emails = emails.forEach(email => {
-                    if (email.to === loggedinUser.email) {
-                        return emails;
-                    }
-                })
-            }
-            return emails;
-        }
+        // isUserLoggedIn(loggedinUser) {
+        //     if (loggedinUser) {
+        //         let emails = emails.forEach(email => {
+        //             if (email.to === loggedinUser.email) {
+        //                 return emails;
+        //             }
+        //         })
+        //     }
+        //     return emails;
+        // }
 
+    },
+    watch: {
+        emailId: {
+            handler() {
+                this.loadEmail()
+            },
+            immediate: true,
+        }
     }
 }

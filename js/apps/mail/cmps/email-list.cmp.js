@@ -1,4 +1,3 @@
-import { emailService } from "../services/email.service.js";
 import emailPreview from "./email-preview.cmp.js";
 
 export default {
@@ -16,20 +15,10 @@ export default {
     `,
     data() {
         return {
-            email: null
         }
     },
-    created() {
-        const { emailId } = this.$route.params;
-        emailService.get(emailId).then(email => this.email = email)
-    },
-
-    components: {
-        emailPreview,
-        emailService
-    },
+    components: { emailPreview },
     methods: {
-
     }
 
 }

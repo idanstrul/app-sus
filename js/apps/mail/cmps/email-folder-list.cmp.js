@@ -22,11 +22,11 @@ export default {
         }
     },
     methods: {
-        setFilter() {
-            emailService.query(criteria)
-                .then(email => {
-                    return this.email = email;
-                })
-        }
+        // setFilter() {
+        //     emailService.query(criteria)
+        //         .then(email => {
+        //             return this.email = email;
+        //         })
+        // }
     }
 }
