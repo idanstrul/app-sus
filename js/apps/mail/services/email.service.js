@@ -1,5 +1,142 @@
 import { utilService } from "../../../services/util.service.js";
-import { storageService } from "../../../services/async-storage.service.js"
+import { storageService } from "../../../services/async-storage.service.js";
+
+const emailsData = [
+    {
+        subject: 'Miss you!',
+        body: 'Would love to catch up sometimes',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'momo@momo.com'
+    },
+    {
+        subject: 'MISSING PERSON!',
+        body: 'Where is Puki????',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'WHERE IS MY BAMIA?????',
+        body: 'Hi, I opened the fridge and the lunch box with my bamia was not there. any idea where it is?',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Google Maps Platform',
+        body: 'Hello, it appears that your account has an unpaid debt. In order to solve the matter, please ask CA to stop using our paid services. Sincerely, Google Team.',
+        sentAt: 1551133930594,
+        isRead: true,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Dropbox',
+        body: 'Hello, it appears that your disk space is running out!',
+        sentAt: 1551133930594,
+        isRead: true,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Lorem is very Ipsum.',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'DO YOU WANT TO SAVE A LIFE???',
+        body: 'Hello, each year a wild Lidor gives out his credit card and is left with no money left because of the hunters. If you wish to support the wild Lidor habbitat, donate now!',
+        sentAt: 1551133930594,
+        isReal: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem Ipsum',
+        body: 'Is the lorem really ipsum?',
+        sentAt: 1551133930594,
+        isReal: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'YES! THIS IS A LOREM SPAM!',
+        sentAt: 1551133930594,
+        isReal: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem Lorem',
+        body: 'Lorem is ipsum',
+        sentAt: 1551133930594,
+        isReal: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Ipsum Ipsum',
+        body: 'Ipsum is also Lorem???',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Can Muki live without Puki????',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Help!',
+        body: 'Lorem?',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Lorem Lorem Lorem!',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Lorem Ipsum.',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Lorem Lorem Lorem',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Ipsum',
+        body: 'Ipsum Ipsum Ipsum',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'Ipsum',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    },
+    {
+        subject: 'Lorem',
+        body: 'This is the end of the Lorem Spam!',
+        sentAt: 1551133930594,
+        isRead: false,
+        to: 'user@appsus.com'
+    }
+
+];
 
 const EMAIL_STORAGE_KEY = 'emailsDB';
 _createEmails();
@@ -43,31 +180,14 @@ function save(email) {
     else return storageService.post(EMAIL_STORAGE_KEY, email);
 }
 
-function _createEmails() {
-    let emails = utilService.loadFromStorage(EMAIL_STORAGE_KEY);
-    if (!emails || !emails.length) {
-        emails = [];
-        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', 1551133930594, false, 'momo@momo.com'));
-        emails.push(_createEmail('WTF?!', 'Where is Puki????', 1551133930594, true, 'user@appsus.com'));
-        utilService.saveToStorage(EMAIL_STORAGE_KEY, emails);
-    }
-    return emails;
-}
 
-function _createEmail(subject, body, sentAt, isRead, to) {
-    const email = getEmptyEmail(subject, body, sentAt, isRead, to);
-    email.id = utilService.makeId();
-    return email;
-}
 
-function getEmptyEmail(subject = '', body = '', sentAt, isRead, to = '') {
+
+
+function getEmptyEmail(email) {
     return {
-        id: '',
-        subject,
-        body,
-        sentAt,
-        isRead,
-        to
+        ...email,
+        id: utilService.makeId(),
     };
 }
 
@@ -80,3 +200,17 @@ function getEmptyEmail(subject = '', body = '', sentAt, isRead, to = '') {
 // }
 
 
+
+
+function _createEmail(email) {
+    const createdEmail = getEmptyEmail(email);
+    return createdEmail;
+}
+
+function _createEmails() {
+    const foundEmails = utilService.loadFromStorage(EMAIL_STORAGE_KEY);
+    if (!foundEmails) {
+        const createdEmails = emailsData.map(email => _createEmail(email));
+        utilService.saveToStorage(EMAIL_STORAGE_KEY, createdEmails);
+    }
+}

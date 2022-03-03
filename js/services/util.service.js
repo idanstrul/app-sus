@@ -9,7 +9,7 @@ function saveToStorage(key, value) {
 }
 
 function loadFromStorage(key) {
-    let data = localStorage.getItem(key);
+    let data = localStorage.getItem(key)
     return (data) ? JSON.parse(data) : undefined;
 }
 
