@@ -9,7 +9,7 @@ export default {
         <section class="email-app">
             <email-filter />
             <email-folder-list />
-            <email-list />
+            <email-list :emails="emails"/>
         </section>
     `,
     components: {
@@ -21,16 +21,15 @@ export default {
         return {
             emails: [],
             criteria: {
-                status: '',
-                txt: '',
-                isRead: false,
-                isStared: false,
-                labels: []
+                isRead: true
             }
         }
     },
     created() {
+        console.log('creating', this.emails);
         emailService.query(this.criteria).then(emails => this.emails = emails);
+        console.log('created', this.emails);
+
     },
     methods: {
         setFilter(criteria) {

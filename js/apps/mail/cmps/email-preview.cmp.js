@@ -1,39 +1,45 @@
+import { emailService } from "../services/email.service.js";
+
 export default {
-    props: ['email'],
+    prop: ['email'],
     template: `
         <section class="email-preview">
             <div class="email-container">
                 <div>
                     <span role="button" @click="isStared = !isStared">☆</span>
-                    <div v-if="isEmailRead" v-bind:style = "style">
-                    <span>{{email.subject}}</span>
-                    <span>{{email.txt}}</span>
-                    <span>{{email.date}}</span>
+                    <div  v-bind:style = "style"> 
+                    <!-- v-if="isEmailRead" -->
+                    <!-- <span>{{email.subject}}</span> -->
+                    <pre>{{email}}</pre>
+                    <!-- <span>{{email.sentAt}}</span> -->
                     </div>
                 </div>
             </div>
         </section>
     `,
+    components: {
+        emailService
+    },
     data() {
         return {
-            isRead: false,
             style: 'whitesmoke'
         }
     },
+
     methods: {
-        markAsRead() {
-            this.isRead = true;
+        markAsRead(isRead) {
+            // this.isRead = true;
             this.style = 'white';
 
         },
-        markAsUnRead() {
-            this.isRead = false;
+        markAsUnRead(isRead) {
+            // this.isRead = false;
             this.style = 'whitesmoke';
         }
     },
     computed: {
-        isEmailRead() {
-            (isRead) ? style = 'white' : 'whitesmoke';
+        isEmailRead(isRead) {
+            // (this.isRead) ? style = 'white' : 'whitesmoke';
         }
     }
 

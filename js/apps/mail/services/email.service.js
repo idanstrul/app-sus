@@ -12,16 +12,16 @@ export const emailService = {
 };
 
 function query(criteria) {
-    const emails = storageService.query(EMAIL_STORAGE_KEY).then(emails => {
-        return emails.filter(email => {
-            return email.status === criteria.status &&
-                email.txt.includes(criteria.txt) &&
-                email.isRead === criteria.isRead &&
-                email.isStared === criteria.isStared &&
-                criteria.lables.every(function (label) {
-                    return email.labels.indexOf(label) !== -1;
-                })
-        })
+    let emails = storageService.query(EMAIL_STORAGE_KEY).then(response => {
+        console.log('criteria', criteria);
+        console.log(response);
+        Object.keys(criteria).forEach(criterion => {
+            if (criteria[criterion]) {
+                response = response.filter(email => email[criterion] === criteria[criterion])
+            }
+        });
+        console.log('response', response);
+        return response
     })
     return emails;
 }
@@ -47,7 +47,7 @@ function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_STORAGE_KEY);
     if (!emails || !emails.length) {
         emails = [];
-        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', false, 1551133930594, 'momo@momo.com'));
+        emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', 1551133930594, false, 'momo@momo.com'));
         utilService.saveToStorage(EMAIL_STORAGE_KEY, emails);
     }
     return emails;

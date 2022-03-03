@@ -29,10 +29,7 @@ export default {
     },
     methods: {
         setFilter() {
-            emailService.query(criteria)
-                .then(email => {
-                    return this.email = email;
-                })
+            emailService.query(this.criteria).then(email => { return this.email = email })
         }
     }
 }
