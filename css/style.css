@@ -1,13 +1,13 @@
 /* SETAP */
-@import url('/css/setap/vars.css');
-@import url('/css/setap/helpers.css');
+@import url('./setap/vars.css');
+@import url('./setap/helpers.css');
 
 /* BASIC */
 
-@import url('/css/basic/base.css');
-@import url('/css/basic/layout.css');
+@import url('./basic/base.css');
+@import url('./basic/layout.css');
 
 /* COMPONENTS */
 
 /* KEEP */
-@import url('/css/components/keep/note-preview.cmp.css');
+@import url('./components/keep/note-preview.cmp.css');

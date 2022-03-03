@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
+    name: 'draft-folder',
     template: `
         <section class="draft-folder">
             <ul>

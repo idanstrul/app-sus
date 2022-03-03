@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js";
 
 export default {
+    name: 'email-folder-list',
     template: `
         <section class="email-folder-list">
             <div class="folder-list-container">

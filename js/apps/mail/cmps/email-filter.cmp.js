@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js";
 
 export default {
+    name: 'email-filter',
     template: `
         <section class="email-filter">
             <label>

@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
+    name: 'sent-folder',
     template: `
         <section class="sent-folder">
             <ul>

@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js";
 
 export default {
+    name: 'email-details',
     template: `
         <section class="email-details" v-if="email">
             <div class="email-details-container">

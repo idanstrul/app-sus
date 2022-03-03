@@ -2,6 +2,7 @@ import { emailService } from "../services/email.service.js";
 import emailPreview from "./email-preview.cmp.js";
 
 export default {
+    name: 'email-list',
     props: ['emails'],
     template: `
         <section class="email-list">
@@ -15,7 +16,7 @@ export default {
     `,
     data() {
         return {
-            // email: null
+            email: null
         }
     },
     created() {

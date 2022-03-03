@@ -1,6 +1,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
+    name: 'trash-folder',
     template: `
         <section class="trash-folder">
             <ul>
