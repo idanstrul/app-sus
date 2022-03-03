@@ -1,4 +1,7 @@
 :root{
+    --border-clr:#cbcbcb;
+
+
     --mark-clr-default: #ffffff;
     --mark-clr-red: #f28b82;
     --mark-clr-orange: #fbbc04;

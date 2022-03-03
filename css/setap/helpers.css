@@ -1,3 +1,22 @@
+.flex{
+    display: flex;
+}
+
+.space-between{
+    justify-content: space-between;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.text-center{
+    text-align: center;
+}
+
+
+
+
 .mark-default{
     background-color: var(--mark-clr-default);
 }

@@ -1,0 +1,9 @@
+.card{
+
+}
+
+.card {
+    min-height: 60px;
+    border: solid 1px var(--border-clr);
+    border-radius: 10px;
+}

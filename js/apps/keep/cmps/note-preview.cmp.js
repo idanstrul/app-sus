@@ -1,4 +1,5 @@
 import { noteService } from "../services/note.service.js"
+import { eventBus } from "../../../services/eventBus.service.js"
 import noteTxt from "./note-txt.cmp.js"
 import noteTodos from "./note-todos.cmp.js"
 import noteImg from "./note-img.cmp.js"
@@ -25,6 +26,8 @@ export default {
                 <option value="mark-grey">grey</option>
             </select>
             <button @click="togglePin">Pin</button>
+            <button @click="duplicate">Duplicate</button>
+            <button @click="remove">Remove</button>
         </div>
     </section>
     `,
@@ -41,8 +44,15 @@ export default {
     },
     methods: {
         togglePin(){
-            this.isPinned = !this.isPinned;
-            eventBus.emit('pinToggled', this.pinData)
+            noteService.togglePin(this.note)
+        },
+        duplicate(){
+            noteService.duplicate(this.note)
+                .then(newNote => eventBus.emit('noteDuplicated', newNote))
+        },
+        remove(){
+            noteService.remove(this.note.id)
+                .then(() => eventBus.emit('noteRemoved', this.note.id))
         }
     }
 }

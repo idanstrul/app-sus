@@ -1,5 +1,11 @@
-.card-container{
+/* .card-container{
     display: flex;
     gap: 30px;
     flex-wrap: wrap;
+} */
+
+
+.card-container{
+    column-count: auto;
+    column-width: 240px;
 }
