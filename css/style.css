@@ -9,7 +9,7 @@
 
 /* COMPONENTS */
 
-@import url('./css/components/app-header.css');
+@import url('./components/app-header.css');
 
 /* KEEP */
 @import url('./components/keep/note-preview.cmp.css');
