@@ -21,7 +21,11 @@ export default {
         return {
             emails: [],
             criteria: {
-                isRead: true
+                isRead: false
+            },
+            loggedinUser: {
+                email: 'user@appsus.com',
+                fullname: 'Mahatma Appsus'
             }
         }
     },
@@ -32,9 +36,6 @@ export default {
 
     },
     methods: {
-        setFilter(criteria) {
-            this.criteria = criteria;
-        }
-    },
+    }
 
 }

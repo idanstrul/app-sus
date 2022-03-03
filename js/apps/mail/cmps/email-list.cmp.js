@@ -27,6 +27,8 @@ export default {
         emailPreview,
         emailService
     },
-    methods: {}
+    methods: {
+
+    }
 
 }

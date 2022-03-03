@@ -35,6 +35,20 @@ export default {
         loadEmail() {
             emailService.get(this.emailId)
                 .then(email => this.email = email);
+        },
+        setFilter(criteria) {
+            this.criteria = criteria;
+        },
+        isUserLoggedIn(loggedinUser) {
+            if (loggedinUser) {
+                let emails = emails.forEach(email => {
+                    if (email.to === loggedinUser.email) {
+                        return emails;
+                    }
+                })
+            }
+            return emails;
         }
+
     }
 }

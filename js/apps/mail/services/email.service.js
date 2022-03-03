@@ -48,6 +48,7 @@ function _createEmails() {
     if (!emails || !emails.length) {
         emails = [];
         emails.push(_createEmail('Miss you!', 'Would love to catch up sometimes', 1551133930594, false, 'momo@momo.com'));
+        emails.push(_createEmail('WTF?!', 'Where is Puki????', 1551133930594, true, 'user@appsus.com'));
         utilService.saveToStorage(EMAIL_STORAGE_KEY, emails);
     }
     return emails;
@@ -78,7 +79,4 @@ function getEmptyEmail(subject = '', body = '', sentAt, isRead, to = '') {
 //     lables: ['important', 'romantic'] // has any of the labels
 // }
 
-const loggedinUser = {
-    email: 'user@appsus.com',
-    fullname: 'Mahatma Appsus'
-}
+
