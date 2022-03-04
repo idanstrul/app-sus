@@ -130,6 +130,7 @@ export const emailService = {
     markEmailAsRead,
     markEmailAsDeleted,
     saveNewEmail,
+    saveEmailDraft
 };
 
 const criterionFilter = {
@@ -172,6 +173,7 @@ function query(criteria, sorting) {
                 return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
             })
         }
+
         return response
     })
     return emails;
@@ -192,6 +194,11 @@ function get(emailId) {
 function saveNewEmail(emailPayload) {
     const newEmail = getEmptySentEmail(emailPayload);
     storageService.post(EMAIL_STORAGE_KEY, newEmail);
+}
+
+function saveEmailDraft(emailPayload) {
+    const emailDraft = getEmptyDraftEmail(emailPayload);
+    storageService.post(EMAIL_STORAGE_KEY, emailDraft);
 }
 
 function markEmailAsRead(emailId) {
@@ -230,6 +237,15 @@ function getEmptySentEmail(email) {
         id: utilService.makeId(),
         isRead: false,
         status: 'sent',
+        isStared: false
+    };
+}
+function getEmptyDraftEmail(email) {
+    return {
+        ...email,
+        id: utilService.makeId(),
+        isRead: false,
+        status: 'drafts',
         isStared: false
     };
 }

@@ -25,12 +25,6 @@ export default {
         }
     },
     methods: {
-        setEmailStatus() {
-            this.emails.forEach(email => {
-                email.status === criteria.status
-            });
-            return email.status;
-        }
     },
     computed: {}
 

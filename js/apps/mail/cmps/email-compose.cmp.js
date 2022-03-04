@@ -41,6 +41,8 @@ export default {
             emailService.saveNewEmail(this.formData);
         },
         closeEmail() {
+            this.formData.sentAt = (new Date()).getTime();
+            emailService.saveEmailDraft(this.formData);
             this.$emit('close');
         }
     }

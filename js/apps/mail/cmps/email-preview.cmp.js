@@ -34,11 +34,14 @@ export default {
             let myDate = new Date(timestamp).toLocaleDateString()
             return myDate;
         },
+        emailBody() {
+            return this.$props.email.body;
+        },
         displayEmailTxt() {
-            if (!this.isLongMode && this.email.body.length > 40) {
-                return this.email.body.slice(0, 10)
+            if (!this.isLongMode && this.emailBody?.length > 40) {
+                return this.emailBody.slice(0, 10)
             } else {
-                return this.email.body
+                return this.emailBody
             }
         },
     }
