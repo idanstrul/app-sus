@@ -7,7 +7,7 @@ export default {
     name: 'email-app',
     template: `
         <section class="email-app">
-            <email-filter />
+            <email-filter @filter-change="handleFilterChange" />
             <email-folder-list />
             <email-list :emails="emails"/>
         </section>
@@ -30,12 +30,22 @@ export default {
         }
     },
     created() {
-        console.log('creating', this.emails);
-        emailService.query(this.criteria).then(emails => this.emails = emails);
-        console.log('created', this.emails);
-
     },
     methods: {
+        handleFilterChange(payload) {
+            this.criteria = payload;
+        }
+    },
+    watch: {
+        criteria: {
+            handler: function () {
+                console.log('creating', this.emails);
+                emailService.query(this.criteria).then(emails => this.emails = emails);
+                console.log('created', this.emails);
+            },
+            deep: true,
+            immediate: true
+        }
     }
 
 }

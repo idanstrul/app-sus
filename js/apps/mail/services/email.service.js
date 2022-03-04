@@ -153,8 +153,13 @@ function query(criteria) {
         console.log('criteria', criteria);
         console.log(response);
         Object.keys(criteria).forEach(criterion => {
-            if (criteria[criterion]) {
-                response = response.filter(email => email[criterion] === criteria[criterion])
+            if (criteria[criterion] && criterion == 'txt') {
+                response = response.filter(email => {
+                    const emailBody = email['body'].toLowerCase();
+                    const emailSubject = email['subject'].toLowerCase();
+                    const search = criteria['txt'].toLowerCase();
+                    return emailBody.includes(search) || emailSubject.includes(search);
+                })
             }
         });
         console.log('response', response);

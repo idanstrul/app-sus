@@ -6,10 +6,10 @@ export default {
         <section class="email-filter">
             <label>
                 search
-                <input type="text" @input="setFilter" ref="txtInput" v-model="criteria.txt" placeholder="Search text here">
-                <select @change="setFilter">
-                    <option value="read">Read</option>
-                    <option value="unread">Unread</option>
+                <input type="text" ref="txtInput" v-model="criteria.txt" placeholder="Search text here">
+                <select v-model="criteria.isRead">
+                    <option :value="true">Read</option>
+                    <option :value="false">Unread</option>
                 </select>
             </label>
         </section>
@@ -20,11 +20,8 @@ export default {
     data() {
         return {
             criteria: {
-                status: '',
                 txt: '',
                 isRead: false,
-                isStared: false,
-                labels: []
             }
         }
     },
@@ -32,8 +29,15 @@ export default {
         this.$refs.txtInput.focus()
     },
     methods: {
-        setFilter() {
-            emailService.query(this.criteria).then(email => { return this.email = email })
+
+    },
+    watch: {
+        criteria: {
+            handler: function () {
+                console.log('ran watch');
+                this.$emit('filterChange', this.criteria);
+            },
+            deep: true
         }
     }
 }
