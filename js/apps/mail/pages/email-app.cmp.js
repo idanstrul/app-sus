@@ -8,8 +8,9 @@ export default {
     name: 'email-app',
     template: `
         <section class="email-app">
+            <button @click="addEmailModal = true">Add new Email</button>
             <email-filter @filter-list="handleFilterList" />
-            <email-compose />
+            <email-compose v-if="addEmailModal" @close="addEmailModal = false" />
             <email-folder-list />
             <email-list :emails="emails"/>
         </section>
@@ -30,7 +31,8 @@ export default {
             loggedinUser: {
                 email: 'user@appsus.com',
                 fullname: 'Mahatma Appsus'
-            }
+            },
+            addEmailModal: false
         }
     },
     computed: {

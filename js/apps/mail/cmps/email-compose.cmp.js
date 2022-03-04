@@ -4,7 +4,9 @@ export default {
     name: 'email-compose',
     template: `
     <teleport to="#app-portal">
+        <div class="portal-bg">
        <section class="email-compose portal-content">
+           <button @click="closeEmail">X</button>
            <div class="form-container">
                <form @submit.prevent="createNewEmail">
                    <label for="to">
@@ -20,6 +22,7 @@ export default {
                </form>
            </div>
        </section>
+</div>
 </teleport>
     `,
     components: {
@@ -35,6 +38,9 @@ export default {
         createNewEmail() {
             this.formData.sentAt = (new Date()).getTime();
             emailService.saveNewEmail(this.formData);
+        },
+        closeEmail() {
+            this.$emit('close');
         }
     }
 }
