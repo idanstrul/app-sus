@@ -135,10 +135,10 @@ export const emailService = {
 
 const criterionFilter = {
     txt: (email, value) => {
-        const emailBody = email['body'].toLowerCase();
-        const emailSubject = email['subject'].toLowerCase();
+        const emailBody = email['body']?.toLowerCase();
+        const emailSubject = email['subject']?.toLowerCase();
         const search = value.toLowerCase();
-        return emailBody.includes(search) || emailSubject.includes(search);
+        return emailBody?.includes(search) || emailSubject?.includes(search);
     },
     isRead: (email, value) => {
         return email.isRead === value;

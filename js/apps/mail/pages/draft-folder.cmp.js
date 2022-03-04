@@ -21,7 +21,7 @@ export default {
             criteria: {
                 status: 'draft'
             },
-            emails: []
+            emails: [],
         }
     },
     methods: {
