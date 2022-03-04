@@ -1,11 +1,12 @@
 import { noteService } from "../services/note.service.js"
 import { eventBus } from "../../../services/eventBus.service.js"
+import colorMarker from "./color-marker.cmp.js"
 
 export default {
     // props: ['note'],
     template: `
-    <section class="note-edit">
-        <input v-if="newNote.type === 'note-todos'" class="title" type="text" v-model="newNote.info.label">
+    <section class="note-edit" :class="newNote.mark">
+        <input class="title" type="text" v-model="newNote.info.title">
         <textarea v-if="newNote.type === 'note-txt'" class="txt" name="note-txt" cols="30" rows="10" v-model="newNote.info.txt"></textarea>
         <div v-if="newNote.type === 'note-todos'" v-for="(todo, idx) in newNote.info.todos" class="todo">
             <input type="checkbox" @change="setDoneAt(idx)" v-model="newNote.info.todos[idx].isDone">
@@ -21,10 +22,14 @@ export default {
         <pre>{{newTodo}}</pre>
 
         <div class="controls">
+            <color-marker :note="newNote" @marker-changed="setMarkClr"></color-marker>
             <button @click="save">Save</button>
         </div>
     </section>
     `,
+    components: {
+        colorMarker
+    },
     data(){
         return {
             newNote: (this.note)? {...this.note}: this.createNewNote(),
@@ -43,8 +48,9 @@ export default {
                 id: "",
                 type: "note-todos",
                 isPinned: false,
+                mark: 'mark-default',
                 info: {
-                    label: "Get my stuff together",
+                    title: "Get my stuff together",
                     todos: [
                         { txt: "Driving liscence", isDone: false, doneAt: null },
                         { txt: "Coding power", isDone: true, doneAt: 187111111 }
@@ -60,7 +66,11 @@ export default {
             this.newNote.info.todos.push(this.newTodo)
             this.newTodo = { txt: '', isDone: false, doneAt: null }
         },
+        setMarkClr(markClr){
+            this.newNote.mark = markClr;
+        },
         save(){
+            this.addTodo()
             noteService.save(this.newNote)
                 .then(newNote => {
                     eventBus.emit('noteSaved',newNote)

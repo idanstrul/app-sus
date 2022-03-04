@@ -7,7 +7,8 @@ export const noteService = {
     togglePin,
     save,
     duplicate,
-    remove
+    remove,
+    setMarkClr
 }
 
 const defaultNotes = [
@@ -15,7 +16,9 @@ const defaultNotes = [
         id: "n101",
         type: "note-txt",
         isPinned: true,
+        mark: 'mark-default',
         info: {
+            title: 'hello',
             txt: "Fullstack Me Baby!"
         }
     },
@@ -23,6 +26,7 @@ const defaultNotes = [
         id: "n102",
         type: "note-img",
         isPinned: false,
+        mark: 'mark-default',
         info: {
             url: "assets/keep/google-dog-search-2014-01.jpg.optimal.jpg",
             title: "Bobi and Me"
@@ -35,8 +39,9 @@ const defaultNotes = [
         id: "n103",
         type: "note-todos",
         isPinned: false,
+        mark: 'mark-default',
         info: {
-            label: "Get my stuff together",
+            title: "Get my stuff together",
             todos: [
                 { txt: "Driving liscence", isDone: false, doneAt: null },
                 { txt: "Coding power", isDone: true, doneAt: 187111111 }
@@ -71,6 +76,11 @@ function duplicate(note){
 function save(note) {
     if (note.id) return storageService.put(STORAGE_KEY, note);
     else return storageService.post(STORAGE_KEY, note);
+}
+
+function setMarkClr(note, markClr){
+    note.mark = markClr;
+    return save(note);    
 }
 
 function togglePin(note){
