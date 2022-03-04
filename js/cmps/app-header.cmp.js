@@ -1,10 +1,10 @@
+import appLogo from "./app-logo.cmp.js"
+
 export default {
     name: 'app-header',
     template: `
         <header class="app-header flex space-between align-center">
-            <div class="logo">
-                <h3>Appsus</h3>
-            </div>
+            <app-logo></app-logo>
             <nav class="nav-bar">
                 <router-link to="/">Home</router-link> |
                 <router-link to="/book">Miss Book</router-link> | 
@@ -14,5 +14,8 @@ export default {
             </nav>
         </header>
     `,
+    components: {
+        appLogo
+    }
 
 }

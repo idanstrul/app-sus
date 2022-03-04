@@ -1,0 +1,9 @@
+@font-face {
+    font-family: hexagon ;
+    src: url('/assets/fonts/hexagon.regular.ttf');
+}
+
+.logo{
+    font-family: hexagon;
+    font-size: 2.5em;
+}

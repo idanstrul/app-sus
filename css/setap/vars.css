@@ -1,6 +1,11 @@
 :root{
     --border-clr:#cbcbcb;
 
+    --logo-blue: #4285f4;
+    --logo-red: #ea4335;
+    --logo-yellow: #fbbc05;
+    --logo-green: #34a853;
+
 
     --mark-clr-default: #ffffff;
     --mark-clr-red: #f28b82;
