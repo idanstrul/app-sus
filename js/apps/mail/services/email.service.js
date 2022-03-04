@@ -1,5 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { storageService } from "../../../services/async-storage.service.js";
+import notePreviewCmp from "../../keep/cmps/note-preview.cmp.js";
 
 const emailsData = [
     {
@@ -126,9 +127,9 @@ export const emailService = {
     query,
     remove,
     get,
-    save,
     markEmailAsRead,
-    markEmailAsDeleted
+    markEmailAsDeleted,
+    saveNewEmail,
 };
 
 const criterionFilter = {
@@ -142,11 +143,6 @@ const criterionFilter = {
         return email.isRead === value;
     },
     status: (email, value) => {
-        console.log('run');
-        console.log(email.status);
-        if (email.status === 'trash') {
-            console.log('trashy', email);
-        }
         return email.status === value;
     }
 }
@@ -175,17 +171,13 @@ function get(emailId) {
         })
 }
 
-function save(email) {
-    if (email.id) {
-        return storageService.put(EMAIL_STORAGE_KEY, email);
-    } else {
-        return storageService.post(EMAIL_STORAGE_KEY, email);
-    }
+function saveNewEmail(emailPayload) {
+    const newEmail = getEmptySentEmail(emailPayload);
+    storageService.post(EMAIL_STORAGE_KEY, newEmail);
 }
 
 function markEmailAsRead(emailId) {
     get(emailId).then(email => {
-        console.log(email);
         email.isRead = true;
         storageService.put(EMAIL_STORAGE_KEY, email)
     });
@@ -194,13 +186,10 @@ function markEmailAsRead(emailId) {
 function markEmailAsDeleted(emailId) {
     get(emailId).then(email => {
         if (email.status == 'trash') {
-            console.log('lala');
             storageService.remove(EMAIL_STORAGE_KEY, emailId)
         }
         else {
-            console.log('wahsh')
             email.status = 'trash';
-            console.log(email);
             storageService.put(EMAIL_STORAGE_KEY, email)
         }
     })
@@ -216,6 +205,17 @@ function getEmptyEmail(email) {
         isStared: false
     };
 }
+
+function getEmptySentEmail(email) {
+    return {
+        ...email,
+        id: utilService.makeId(),
+        isRead: false,
+        status: 'sent',
+        isStared: false
+    };
+}
+
 
 // const criteria = {
 //     status: 'inbox/sent/trash/draft',

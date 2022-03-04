@@ -14,3 +14,6 @@
 
 /* KEEP */
 @import url('./components/keep/note-preview.cmp.css');
+
+/* PORTAL */
+@import url('./portal/base.css');

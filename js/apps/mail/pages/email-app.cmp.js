@@ -1,13 +1,15 @@
 import { emailService } from "../services/email.service.js";
 import emailFilter from "../cmps/email-filter.cmp.js";
 import emailList from "../cmps/email-list.cmp.js";
-import emailFolderList from "../cmps/email-folder-list.cmp.js"
+import emailFolderList from "../cmps/email-folder-list.cmp.js";
+import emailCompose from "../cmps/email-compose.cmp.js";
 
 export default {
     name: 'email-app',
     template: `
         <section class="email-app">
             <email-filter @filter-list="handleFilterList" />
+            <email-compose />
             <email-folder-list />
             <email-list :emails="emails"/>
         </section>
@@ -15,7 +17,8 @@ export default {
     components: {
         emailFilter,
         emailList,
-        emailFolderList
+        emailFolderList,
+        emailCompose
     },
     data() {
         return {
