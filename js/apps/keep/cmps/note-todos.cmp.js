@@ -5,7 +5,7 @@ export default {
         <h1>{{note.info.title}}</h1>
         <ul>
             <li v-for="(todo, idx) in note.info.todos">
-                <label :title="formatDoneAt(todo.doneAt)">
+                <label :title="formatDoneAt(todo.doneAt)" @click.stop>
                     <input type="checkbox" :checked="todo.isDone" @change="$emit('doneStateToggled', $event, idx)">
                     <span>{{todo.txt}}</span> 
                 </label>

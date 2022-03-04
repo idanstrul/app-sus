@@ -5,18 +5,23 @@ import noteTodos from "./note-todos.cmp.js"
 import noteImg from "./note-img.cmp.js"
 import noteVideo from "./note-video.cmp.js"
 import colorMarker from "./color-marker.cmp.js"
+import appModal from "../../../cmps/app-modal.cmp.js"
+import noteEdit from "./note-edit.cmp.js"
 
 export default {
     props: ['note'],
     template: `
     <section class="note-preview" :class="this.note.mark">
-        <component :is="note.type" :note="note" @done-state-toggled="setDoneState"/>
+        <component :is="note.type" :note="note" @done-state-toggled="setDoneState" @click="isEditOn=true"/>
         <div class="controlls">
             <color-marker :note="note" @marker-changed="setMarkClr"></color-marker>
             <button @click="togglePin">Pin</button>
             <button @click="duplicate">Duplicate</button>
             <button @click="remove">Remove</button>
         </div>
+        <app-modal v-if="isEditOn">
+            <note-edit :note="note" @edit-closed="isEditOn=false"></note-edit>
+        </app-modal>
     </section>
     `,
     components: {
@@ -24,7 +29,14 @@ export default {
         noteTodos,
         noteImg,
         noteVideo,
-        colorMarker
+        colorMarker,
+        appModal,
+        noteEdit
+    },
+    data(){
+        return {
+            isEditOn: false
+        }
     },
     methods: {
         setMarkClr(markClr){

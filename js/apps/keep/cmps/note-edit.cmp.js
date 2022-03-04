@@ -3,7 +3,7 @@ import { eventBus } from "../../../services/eventBus.service.js"
 import colorMarker from "./color-marker.cmp.js"
 
 export default {
-    // props: ['note'],
+    props: ['note'],
     emits: ['editClosed'],
     template: `
         <section class="note-edit" :class="newNote.mark">
@@ -32,9 +32,12 @@ export default {
     components: {
         colorMarker
     },
+    // created(){
+    //     this.newNote = (this.note)? {...this.note}: this.createNewNote();
+    // },
     data(){
         return {
-            newNote: (this.note)? {...this.note}: this.createNewNote(),
+            newNote: this.$props.note,
             newTodo: { txt: '', isDone: false, doneAt: null },
             test: null
         }
