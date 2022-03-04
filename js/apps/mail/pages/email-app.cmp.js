@@ -3,6 +3,7 @@ import emailFilter from "../cmps/email-filter.cmp.js";
 import emailList from "../cmps/email-list.cmp.js";
 import emailFolderList from "../cmps/email-folder-list.cmp.js";
 import emailCompose from "../cmps/email-compose.cmp.js";
+import emailStats from '../cmps/email-stats.cmp.js'
 
 export default {
     name: 'email-app',
@@ -10,6 +11,7 @@ export default {
         <section class="email-app">
             <button @click="addEmailModal = true">Add new Email</button>
             <email-filter @filter-list="handleFilterList" />
+            <email-stats :unread-emails="unreadEmails" :sorting="sorting" @sorting-change="handleSortingChange" />
             <email-compose v-if="addEmailModal" @close="addEmailModal = false" />
             <email-folder-list />
             <email-list :emails="emails"/>
@@ -19,7 +21,8 @@ export default {
         emailFilter,
         emailList,
         emailFolderList,
-        emailCompose
+        emailCompose,
+        emailStats
     },
     data() {
         return {
@@ -32,17 +35,27 @@ export default {
                 email: 'user@appsus.com',
                 fullname: 'Mahatma Appsus'
             },
+            sorting: undefined,
             addEmailModal: false
         }
     },
     computed: {
         currentFolder() {
             return this.$route.query.status || this.criteria.status;
+        },
+        unreadEmails() {
+            return this.emails.filter(email => !email.isRead).length;
         }
     },
     methods: {
+        getEmails() {
+            emailService.query(this.criteria, this.sorting).then(emails => this.emails = emails);
+        },
         handleFilterList(payload) {
             this.criteria = payload;
+        },
+        handleSortingChange(payload) {
+            this.sorting = payload;
         }
     },
     watch: {
@@ -54,11 +67,15 @@ export default {
         },
         criteria: {
             handler: function () {
-                console.log('creating', this.emails);
-                emailService.query(this.criteria).then(emails => this.emails = emails);
-                console.log('created', this.emails);
+                this.getEmails();
             },
             deep: true,
+            immediate: true
+        },
+        sorting: {
+            handler: function () {
+                this.getEmails();
+            },
             immediate: true
         }
     }

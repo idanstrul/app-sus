@@ -10,7 +10,7 @@ export default {
                     <div> 
                     <span>{{this.email.subject}}</span> 
                     
-                    <!-- <span>{{displayEmailTxt}}</span> -->
+                    <span>{{displayEmailTxt}}</span>
                     <span role="button" @click="isRead = !isRead" v-bind:class="{'white': !isRead, 'gray': isRead}"></span>
                     <span>{{displayTime}}</span>
                 </div>
@@ -34,13 +34,13 @@ export default {
             let myDate = new Date(timestamp).toLocaleDateString()
             return myDate;
         },
-        // displayEmailTxt() {
-        //     if (!this.isLongMode && this.email.body.length > 5) {
-        //         return this.email.body.slice(0, 30)
-        //     } else {
-        //         return this.email.body
-        //     }
-        // },
+        displayEmailTxt() {
+            if (!this.isLongMode && this.email.body.length > 40) {
+                return this.email.body.slice(0, 10)
+            } else {
+                return this.email.body
+            }
+        },
     }
 
 }

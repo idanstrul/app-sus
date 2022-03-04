@@ -51,17 +51,6 @@ export default {
             emailService.markEmailAsDeleted(this.emailId);
             this.$router.push({ name: 'email' });
         },
-        // isUserLoggedIn(loggedinUser) {
-        //     if (loggedinUser) {
-        //         let emails = emails.forEach(email => {
-        //             if (email.to === loggedinUser.email) {
-        //                 return emails;
-        //             }
-        //         })
-        //     }
-        //     return emails;
-        // }
-
     },
     watch: {
         emailId: {

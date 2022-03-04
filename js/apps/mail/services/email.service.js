@@ -147,13 +147,31 @@ const criterionFilter = {
     }
 }
 
-function query(criteria) {
+function query(criteria, sorting) {
     let emails = storageService.query(EMAIL_STORAGE_KEY).then(response => {
+
+
         Object.keys(criteria).forEach(criterion => {
             if (typeof criteria[criterion] !== 'undefined') {
                 response = response.filter(email => criterionFilter[criterion](email, criteria[criterion]));
             }
         });
+
+
+        if (sorting === 'date') {
+            response = response.sort(function (a, b) {
+                console.log(b.sentAt)
+                return new Date(b.sentAt) - new Date(a.sentAt);
+            })
+        }
+
+        if (sorting === 'subject') {
+            response = response.sort(function (a, b) {
+                const textA = a.subject.toUpperCase();
+                const textB = b.subject.toUpperCase();
+                return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+            })
+        }
         return response
     })
     return emails;
@@ -215,18 +233,6 @@ function getEmptySentEmail(email) {
         isStared: false
     };
 }
-
-
-// const criteria = {
-//     status: 'inbox/sent/trash/draft',
-//     txt: 'puki', // no need to support complex text search
-//     isRead: false, // (optional property, if missing: show all)
-//     isStared: false, // (optional property, if missing: show all)
-//     lables: ['important', 'romantic'] // has any of the labels
-// }
-
-
-
 
 function _createEmail(email) {
     const createdEmail = getEmptyEmail(email);

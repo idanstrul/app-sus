@@ -2,6 +2,7 @@ import { emailService } from "../services/email.service.js";
 
 export default {
     name: 'email-compose',
+    emits: ['close'],
     template: `
     <teleport to="#app-portal">
         <div class="portal-bg">
