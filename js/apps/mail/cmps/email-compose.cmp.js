@@ -1,12 +1,13 @@
 import { emailService } from "../services/email.service.js";
+import appModal from "../../../cmps/app-modal.cmp.js"
 
 export default {
     name: 'email-compose',
-    emits: ['close'],
+    props: ['email'],
+    emits: ['close', 'refetch'],
     template: `
-    <teleport to="#app-portal">
-        <div class="portal-bg">
-       <section class="email-compose portal-content">
+    <app-modal>
+        <section class="email-compose">
            <button @click="closeEmail">X</button>
            <div class="form-container">
                <form @submit.prevent="createNewEmail">
@@ -22,27 +23,43 @@ export default {
                     <button type="submit">Send</button>
                </form>
            </div>
-       </section>
-</div>
-</teleport>
+           </section>
+</app-modal>
     `,
     components: {
-        emailService
+        emailService,
+        appModal
     },
     data() {
         return {
-            formData: {}
+            formData: {
+                to: this.$props?.email?.to,
+                subject: this.$props.email?.subject,
+                body: this.$props.email?.body
+            }
         }
     },
-    computed: {},
+    computed: {
+        isDraft: function () {
+            return !!this.$props.email;
+        }
+    },
     methods: {
         createNewEmail() {
             this.formData.sentAt = (new Date()).getTime();
-            emailService.saveNewEmail(this.formData);
+            if (this.isDraft) {
+                emailService.createEmailFromDraft(this.$props.email.id, this.formData)
+            }
+            else {
+                emailService.saveNewEmail(this.formData);
+            }
+            this.$emit('refetch');
+            this.$emit('close');
         },
         closeEmail() {
             this.formData.sentAt = (new Date()).getTime();
             emailService.saveEmailDraft(this.formData);
+            this.$emit('refetch');
             this.$emit('close');
         }
     }
