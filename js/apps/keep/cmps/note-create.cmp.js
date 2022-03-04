@@ -3,9 +3,12 @@ export default {
     <section class="note-create">
         <form @submit.prevent>
             <input type="text" name="noteInput" id="">
-            <button>list</button>
-            <button>scatch</button>
+            <button>List</button>
             <button>Image</button>
+            <button>Scatch</button>
+            <button>Video</button>
+            <button>Audio</button>
+            <button>Map</button>
         </form>
     </section>
     `,

@@ -38,8 +38,8 @@ const defaultNotes = [
         info: {
             label: "Get my stuff together",
             todos: [
-                { txt: "Driving liscence", doneAt: null },
-                { txt: "Coding power", doneAt: 187111111 }
+                { txt: "Driving liscence", isDone: false, doneAt: null },
+                { txt: "Coding power", isDone: true, doneAt: 187111111 }
             ]
         }
     }

@@ -3,6 +3,7 @@ import { eventBus } from "../../../services/eventBus.service.js"
 import noteFilter from "../cmps/note-filter.cmp.js"
 import noteList from "../cmps/note-list.cmp.js"
 import noteCreate from "../cmps/note-create.cmp.js"
+import noteEdit from "../cmps/note-edit.cmp.js"
 
 export default {
     template: `
@@ -13,6 +14,7 @@ export default {
         </pre> -->
         <note-filter @filtered="setFilter"></note-filter>
         <note-create></note-create>
+        <note-edit></note-edit>
         
         <h1 v-if="!isFilterOn && !isPinnedNotesEmpty">Pinned:</h1>
         <note-list v-if="!isFilterOn" :notes="pinnedNotes"></note-list>
@@ -23,7 +25,8 @@ export default {
     components: {
         noteFilter,
         noteList,
-        noteCreate
+        noteCreate,
+        noteEdit
     },
     data() {
         return {
@@ -42,6 +45,11 @@ export default {
         this.unsubscribeNoteRemoved = eventBus.on('noteRemoved', (noteId) => {
             const idx = this.notes.findIndex(note => note.id === noteId)
             this.notes.splice(idx, 1)
+        })
+        this.unsubscribeNoteSaved = eventBus.on('noteSaved', (newNote) => {
+            const idx = this.notes.findIndex(note => note.id === newNote.id)
+            if (idx === -1) this.notes.push(newNote);
+            else this.notes.splice(idx, 1, newNote);
         })
     },
     methods: {
@@ -79,5 +87,6 @@ export default {
     unmounted(){
         this.unsubscribeNoteDuplicated()
         this.unsubscribeNoteRemoved()
+        this.unsubscribeNoteSaved()
     }
 }
