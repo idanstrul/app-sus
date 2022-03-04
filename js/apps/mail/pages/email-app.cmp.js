@@ -21,7 +21,7 @@ export default {
         return {
             emails: [],
             criteria: {
-                isRead: false,
+                isRead: undefined,
                 status: 'inbox'
             },
             loggedinUser: {

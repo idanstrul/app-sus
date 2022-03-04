@@ -127,7 +127,8 @@ export const emailService = {
     remove,
     get,
     save,
-    markEmailAsRead
+    markEmailAsRead,
+    markEmailAsDeleted
 };
 
 const criterionFilter = {
@@ -138,10 +139,14 @@ const criterionFilter = {
         return emailBody.includes(search) || emailSubject.includes(search);
     },
     isRead: (email, value) => {
-        console.log(email, value);
         return email.isRead === value;
     },
     status: (email, value) => {
+        console.log('run');
+        console.log(email.status);
+        if (email.status === 'trash') {
+            console.log('trashy', email);
+        }
         return email.status === value;
     }
 }
@@ -184,6 +189,21 @@ function markEmailAsRead(emailId) {
         email.isRead = true;
         storageService.put(EMAIL_STORAGE_KEY, email)
     });
+}
+
+function markEmailAsDeleted(emailId) {
+    get(emailId).then(email => {
+        if (email.status == 'trash') {
+            console.log('lala');
+            storageService.remove(EMAIL_STORAGE_KEY, emailId)
+        }
+        else {
+            console.log('wahsh')
+            email.status = 'trash';
+            console.log(email);
+            storageService.put(EMAIL_STORAGE_KEY, email)
+        }
+    })
 }
 
 

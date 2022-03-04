@@ -8,8 +8,8 @@ export default {
                 <div class="email-actions">
             <h4>{{email.subject}}</h4>
             <div>
-                <span role="button" @click="deleteEmail(); $router.push('/email')">🗑</span>
-                <button @click="$router.push('/email')">⮐</button>
+                <span role="button" @click="markEmailAsDeleted">🗑</span>
+                <button @click="$router.push({ name: 'email' })">⮐</button>
                 <span>{{displayTime}}</span>
             </div>
             </div>
@@ -47,9 +47,10 @@ export default {
         markEmailAsRead() {
             emailService.markEmailAsRead(this.emailId);
         },
-        deleteEmail() {
-            emailService.remove(this.emailId).then(email => this.email = email);
-        }
+        markEmailAsDeleted() {
+            emailService.markEmailAsDeleted(this.emailId);
+            this.$router.push({ name: 'email' });
+        },
         // isUserLoggedIn(loggedinUser) {
         //     if (loggedinUser) {
         //         let emails = emails.forEach(email => {

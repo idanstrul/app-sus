@@ -6,6 +6,7 @@ export default {
                 search
                 <input type="text" ref="txtInput" v-model="criteria.txt" placeholder="Search text here">
                 <select v-model="criteria.isRead">
+                    <option :value="undefined">All</option>
                     <option :value="true">Read</option>
                     <option :value="false">Unread</option>
                 </select>
@@ -16,7 +17,7 @@ export default {
         return {
             criteria: {
                 txt: '',
-                isRead: false,
+                isRead: undefined,
             }
         }
     },
