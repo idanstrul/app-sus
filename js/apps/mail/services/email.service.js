@@ -148,21 +148,25 @@ export const emailService = {
     save
 };
 
+const criterionFilter = {
+    txt: (email, value) => {
+        const emailBody = email['body'].toLowerCase();
+        const emailSubject = email['subject'].toLowerCase();
+        const search = value.toLowerCase();
+        return emailBody.includes(search) || emailSubject.includes(search);
+    },
+    isRead: (email, value) => {
+        return email.isRead === value;
+    }
+}
+
 function query(criteria) {
     let emails = storageService.query(EMAIL_STORAGE_KEY).then(response => {
-        console.log('criteria', criteria);
-        console.log(response);
         Object.keys(criteria).forEach(criterion => {
-            if (criteria[criterion] && criterion == 'txt') {
-                response = response.filter(email => {
-                    const emailBody = email['body'].toLowerCase();
-                    const emailSubject = email['subject'].toLowerCase();
-                    const search = criteria['txt'].toLowerCase();
-                    return emailBody.includes(search) || emailSubject.includes(search);
-                })
+            if (criteria[criterion]) {
+                response = response.filter(email => criterionFilter[criterion](email, criteria[criterion]));
             }
         });
-        console.log('response', response);
         return response
     })
     return emails;
