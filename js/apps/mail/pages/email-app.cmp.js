@@ -7,7 +7,7 @@ export default {
     name: 'email-app',
     template: `
         <section class="email-app">
-            <email-filter @filter-change="handleFilterChange" />
+            <email-filter @filter-list="handleFilterList" />
             <email-folder-list />
             <email-list :emails="emails"/>
         </section>
@@ -21,7 +21,8 @@ export default {
         return {
             emails: [],
             criteria: {
-                isRead: false
+                isRead: false,
+                status: 'inbox'
             },
             loggedinUser: {
                 email: 'user@appsus.com',
@@ -29,14 +30,23 @@ export default {
             }
         }
     },
-    created() {
+    computed: {
+        currentFolder() {
+            return this.$route.query.status || this.criteria.status;
+        }
     },
     methods: {
-        handleFilterChange(payload) {
+        handleFilterList(payload) {
             this.criteria = payload;
         }
     },
     watch: {
+        currentFolder: {
+            handler: function () {
+                this.criteria.status = this.currentFolder;
+            },
+            immediate: true
+        },
         criteria: {
             handler: function () {
                 console.log('creating', this.emails);

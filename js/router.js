@@ -8,27 +8,33 @@ import emailDetails from "./apps/mail/pages/email-details.cmp.js";
 const routes = [
     {
         path: '/',
-        component: homePage
+        component: homePage,
+        name: 'home'
     },
     {
         path: '/about',
-        component: aboutPage
+        component: aboutPage,
+        name: 'about'
     },
     {
         path: '/book',
-        component: bookApp
+        component: bookApp,
+        name: 'book'
     },
     {
         path: '/note',
-        component: noteIndex
+        component: noteIndex,
+        name: 'note'
     },
     {
         path: '/email',
         component: emailApp,
+        name: 'email'
     },
     {
         path: '/email/:emailId',
-        component: emailDetails
+        component: emailDetails,
+        name: 'email-details'
     }
 
 

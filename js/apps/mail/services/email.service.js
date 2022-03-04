@@ -6,133 +6,114 @@ const emailsData = [
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'momo@momo.com'
     },
     {
         subject: 'MISSING PERSON!',
         body: 'Where is Puki????',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'WHERE IS MY BAMIA?????',
         body: 'Hi, I opened the fridge and the lunch box with my bamia was not there. any idea where it is?',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Google Maps Platform',
         body: 'Hello, it appears that your account has an unpaid debt. In order to solve the matter, please ask CA to stop using our paid services. Sincerely, Google Team.',
         sentAt: 1551133930594,
-        isRead: true,
         to: 'user@appsus.com'
     },
     {
         subject: 'Dropbox',
         body: 'Hello, it appears that your disk space is running out!',
         sentAt: 1551133930594,
-        isRead: true,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Lorem is very Ipsum.',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'DO YOU WANT TO SAVE A LIFE???',
         body: 'Hello, each year a wild Lidor gives out his credit card and is left with no money left because of the hunters. If you wish to support the wild Lidor habbitat, donate now!',
         sentAt: 1551133930594,
-        isReal: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem Ipsum',
         body: 'Is the lorem really ipsum?',
         sentAt: 1551133930594,
-        isReal: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'YES! THIS IS A LOREM SPAM!',
         sentAt: 1551133930594,
-        isReal: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem Lorem',
         body: 'Lorem is ipsum',
         sentAt: 1551133930594,
-        isReal: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Ipsum Ipsum',
         body: 'Ipsum is also Lorem???',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Can Muki live without Puki????',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Help!',
         body: 'Lorem?',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Lorem Lorem Lorem!',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Lorem Ipsum.',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Lorem Lorem Lorem',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Ipsum',
         body: 'Ipsum Ipsum Ipsum',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'Ipsum',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     },
     {
         subject: 'Lorem',
         body: 'This is the end of the Lorem Spam!',
         sentAt: 1551133930594,
-        isRead: false,
         to: 'user@appsus.com'
     }
 
@@ -145,7 +126,8 @@ export const emailService = {
     query,
     remove,
     get,
-    save
+    save,
+    markEmailAsRead
 };
 
 const criterionFilter = {
@@ -156,14 +138,18 @@ const criterionFilter = {
         return emailBody.includes(search) || emailSubject.includes(search);
     },
     isRead: (email, value) => {
+        console.log(email, value);
         return email.isRead === value;
+    },
+    status: (email, value) => {
+        return email.status === value;
     }
 }
 
 function query(criteria) {
     let emails = storageService.query(EMAIL_STORAGE_KEY).then(response => {
         Object.keys(criteria).forEach(criterion => {
-            if (criteria[criterion]) {
+            if (typeof criteria[criterion] !== 'undefined') {
                 response = response.filter(email => criterionFilter[criterion](email, criteria[criterion]));
             }
         });
@@ -185,18 +171,29 @@ function get(emailId) {
 }
 
 function save(email) {
-    if (email.id) return storageService.put(EMAIL_STORAGE_KEY, email);
-    else return storageService.post(EMAIL_STORAGE_KEY, email);
+    if (email.id) {
+        return storageService.put(EMAIL_STORAGE_KEY, email);
+    } else {
+        return storageService.post(EMAIL_STORAGE_KEY, email);
+    }
 }
 
-
-
+function markEmailAsRead(emailId) {
+    get(emailId).then(email => {
+        console.log(email);
+        email.isRead = true;
+        storageService.put(EMAIL_STORAGE_KEY, email)
+    });
+}
 
 
 function getEmptyEmail(email) {
     return {
         ...email,
         id: utilService.makeId(),
+        isRead: false,
+        status: 'inbox',
+        isStared: false
     };
 }
 

@@ -1,32 +1,33 @@
-import { emailService } from "../services/email.service.js";
-
 export default {
     name: 'email-folder-list',
     template: `
         <section class="email-folder-list">
             <div class="folder-list-container">
                 <div>
-                    <!-- <router-link to:'/inbox'>Inbox</router-link>
-                    <router-link to:'/sent'>Sent</router-link>
-                    <router-link to:'/trash'>Trash</router-link>
-                    <router-link to:'/draft'>Draft</router-link> -->
+                    <button @click="changeFolder('inbox')">Inbox</button>
+                    <button @click="changeFolder('sent')">Sent</button>
+                    <button @click="changeFolder('trash')">Trash</button>
+                    <button @click="changeFolder('drafts')">Drafts</button>
                 </div>
             </div>
         </section>
     `,
-    data() {
-        return {
-            criteria: {
-                status: '',
-            }
+    computed: {
+        currentFolder() {
+            return this.$route.query.status || 'inbox';
         }
     },
     methods: {
-        // setFilter() {
-        //     emailService.query(criteria)
-        //         .then(email => {
-        //             return this.email = email;
-        //         })
-        // }
+        changeFolder(folderName) {
+            this.$router.push({ name: 'email', query: { status: folderName } })
+        }
+    },
+    watch: {
+        criteria: {
+            handler: function () {
+                this.$emit('filterFolders', this.criteria);
+            },
+            deep: true
+        }
     }
 }

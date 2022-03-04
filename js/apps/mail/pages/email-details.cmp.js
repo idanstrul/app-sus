@@ -20,13 +20,15 @@ export default {
     `,
     data() {
         return {
-            email: null
+            email: null,
         }
     },
     created() {
-        const { emailId } = this.$route.params;
-        emailService.get(emailId)
+        emailService.get(this.emailId)
             .then(email => this.email = email);
+    },
+    mounted() {
+        this.markEmailAsRead();
     },
     computed: {
         emailId() {
@@ -41,6 +43,9 @@ export default {
     methods: {
         loadEmail() {
             emailService.get(this.emailId).then(email => this.email = email);
+        },
+        markEmailAsRead() {
+            emailService.markEmailAsRead(this.emailId);
         },
         deleteEmail() {
             emailService.remove(this.emailId).then(email => this.email = email);

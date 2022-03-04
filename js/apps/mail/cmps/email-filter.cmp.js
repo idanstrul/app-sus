@@ -1,5 +1,3 @@
-import { emailService } from "../services/email.service.js";
-
 export default {
     name: 'email-filter',
     template: `
@@ -14,9 +12,6 @@ export default {
             </label>
         </section>
     `,
-    components: {
-        emailService
-    },
     data() {
         return {
             criteria: {
@@ -34,8 +29,7 @@ export default {
     watch: {
         criteria: {
             handler: function () {
-                console.log('ran watch');
-                this.$emit('filterChange', this.criteria);
+                this.$emit('filterList', this.criteria);
             },
             deep: true
         }
