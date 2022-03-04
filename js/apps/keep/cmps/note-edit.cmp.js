@@ -4,29 +4,31 @@ import colorMarker from "./color-marker.cmp.js"
 
 export default {
     // props: ['note'],
+    emits: ['editClosed'],
     template: `
-    <section class="note-edit" :class="newNote.mark">
-        <input class="title" type="text" v-model="newNote.info.title">
-        <textarea v-if="newNote.type === 'note-txt'" class="txt" name="note-txt" cols="30" rows="10" v-model="newNote.info.txt"></textarea>
-        <div v-if="newNote.type === 'note-todos'" v-for="(todo, idx) in newNote.info.todos" class="todo">
-            <input type="checkbox" @change="setDoneAt(idx)" v-model="newNote.info.todos[idx].isDone">
-            <input type="text" v-model="todo.txt">
-            <button @click="removeTodo(idx)">X</button>
-            {{todo}}
-        </div>
-        <div v-if="newNote.type === 'note-todos'" class="todo new-todo">
-            <input type="checkbox" @change="setDoneAt(newNote.info.todos.length)" v-model="newTodo.isDone" >
-            <input type="text" v-model="newTodo.txt">
-            <button @click="addTodo">+</button>
-        </div>
-        <pre>{{newTodo}}</pre>
-
-        <div class="controls">
-            <color-marker :note="newNote" @marker-changed="setMarkClr"></color-marker>
-            <button @click="save">Save</button>
-        </div>
-    </section>
-    `,
+        <section class="note-edit" :class="newNote.mark">
+            <input class="title" type="text" v-model="newNote.info.title">
+            <textarea v-if="newNote.type === 'note-txt'" class="txt" name="note-txt" cols="30" rows="10" v-model="newNote.info.txt"></textarea>
+            <div v-if="newNote.type === 'note-todos'" v-for="(todo, idx) in newNote.info.todos" class="todo">
+                <input type="checkbox" @change="setDoneAt(idx)" v-model="newNote.info.todos[idx].isDone">
+                <input type="text" v-model="todo.txt">
+                <button @click="removeTodo(idx)">X</button>
+                {{todo}}
+            </div>
+            <div v-if="newNote.type === 'note-todos'" class="todo new-todo">
+                <input type="checkbox" @change="setDoneAt(newNote.info.todos.length)" v-model="newTodo.isDone" >
+                <input type="text" v-model="newTodo.txt">
+                <button @click="addTodo">+</button>
+            </div>
+            <pre>{{newTodo}}</pre>
+            
+            <div class="controls">
+                <color-marker :note="newNote" @marker-changed="setMarkClr"></color-marker>
+                <button @click="$emit('editClosed')">Cancel</button>
+                <button @click="save">Save</button>
+            </div>
+        </section>
+        `,
     components: {
         colorMarker
     },
@@ -75,6 +77,7 @@ export default {
                 .then(newNote => {
                     eventBus.emit('noteSaved',newNote)
                     this.newNote = this.createNewNote()
+                    this.$emit('editClosed')
                 })
         }
     },

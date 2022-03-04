@@ -4,6 +4,7 @@ import noteFilter from "../cmps/note-filter.cmp.js"
 import noteList from "../cmps/note-list.cmp.js"
 import noteCreate from "../cmps/note-create.cmp.js"
 import noteEdit from "../cmps/note-edit.cmp.js"
+import appModal from "../../../cmps/app-modal.cmp.js"
 
 export default {
     template: `
@@ -12,9 +13,12 @@ export default {
             notes: {{notes}}
             notesForDisplay: {{notesForDisplay}}
         </pre> -->
+        <app-modal>
+            <note-edit></note-edit>
+        </app-modal>
         <note-filter @filtered="setFilter"></note-filter>
-        <note-create></note-create>
-        <note-edit></note-edit>
+        <note-edit v-if="isEditOn" @edit-closed="isEditOn=false"></note-edit>
+        <note-create v-else @click="isEditOn=true"></note-create>
         
         <h1 v-if="!isFilterOn && !isPinnedNotesEmpty">Pinned:</h1>
         <note-list v-if="!isFilterOn" :notes="pinnedNotes"></note-list>
@@ -26,7 +30,8 @@ export default {
         noteFilter,
         noteList,
         noteCreate,
-        noteEdit
+        noteEdit,
+        appModal
     },
     data() {
         return {
@@ -34,7 +39,8 @@ export default {
             filterBy: {
                 search: '',
                 type: ''
-            }
+            },
+            isEditOn: false
         }
     },
     created(){
