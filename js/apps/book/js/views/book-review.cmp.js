@@ -3,15 +3,13 @@ import { bookService } from "../services/books.service.js";
 export default {
     template: `
     <section class="book-review" >
+        <button @click="$router.push('/book')">Back to books</button>
     <p class="review-title">Book Reviews:</p>
-    <h1>lala</h1>
         <div v-for="review in reviews" class="review-container" :key="review">
-            <p>lala</p>
-            <h2>lili</h2>
             <span>Comment By: {{review.name}}</span>
             <span>Date: {{review.date}} Rate: {{'💫'.repeat(review.rate)}}</span>
             <span>Description: {{review.desc}}</span>
-            <button @click="removeComment(review.id)">Delete Comment</button>
+            <button @click="removeReview">Delete Review</button>
         </div> 
         </section>
         `,
@@ -22,7 +20,6 @@ export default {
 
         }
     },
-
     created() {
         console.log('hi');
         const { bookId } = this.$route.params;
@@ -32,7 +29,9 @@ export default {
                 this.reviews = book.reviews
             });
     },
-    computed: {
+    methods: {
+        removeReview() {
 
-    },
+        }
+    }
 }

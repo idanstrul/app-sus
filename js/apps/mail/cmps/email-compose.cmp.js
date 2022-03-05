@@ -46,7 +46,6 @@ export default {
     },
     methods: {
         createNewEmail() {
-            this.formData.sentAt = (new Date()).getTime();
             if (this.isDraft) {
                 emailService.createEmailFromDraft(this.$props.email.id, this.formData)
             }
@@ -57,7 +56,6 @@ export default {
             this.$emit('close');
         },
         closeEmail() {
-            this.formData.sentAt = (new Date()).getTime();
             if (!this.isDraft) {
                 emailService.saveEmailDraft(this.formData);
             }

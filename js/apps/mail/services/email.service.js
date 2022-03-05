@@ -253,7 +253,8 @@ function getEmptySentEmail(email) {
         id: utilService.makeId(),
         isRead: false,
         status: 'sent',
-        isStared: false
+        isStared: false,
+        sentAt: (new Date()).getTime()
     };
 }
 function getEmptyDraftEmail(email) {
@@ -262,13 +263,11 @@ function getEmptyDraftEmail(email) {
         id: utilService.makeId(),
         isRead: false,
         status: 'drafts',
-        isStared: false
+        isStared: false,
+        sentAt: (new Date()).getTime()
     };
 }
 
-function saveNoteAsEmail(note) {
-    getEmptyDraftEmail
-}
 
 
 function _createEmail(email) {

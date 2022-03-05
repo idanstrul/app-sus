@@ -6,7 +6,7 @@ export default {
     template: `
         <section class="review-add">
             <h4>Add a Review</h4>
-            <form action="submit" @submit.prevent="save; $router.push('/book')">
+            <form action="submit" @submit.prevent="save(); $router.push('/book')">
                 <p>Full name:</p>
                 <input type="text" ref="input" @input="displayReview" v-model="review.name">
                 <label for="rate">Rate this book:</label>
@@ -58,6 +58,7 @@ export default {
                     }
                     eventBus.emit('show-msg', { txt: 'Review Added', type: 'success' })
                 })
+            console.log('saved review');
         },
         removeComment(reviewId) {
             bookService.removeReview(this.book, reviewId)

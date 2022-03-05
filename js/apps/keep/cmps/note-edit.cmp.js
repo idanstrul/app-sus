@@ -109,7 +109,9 @@ export default {
                 })
         },
         saveAsEmail() {
-            noteService.convertNoteToEmail(this.newNote)
+            const newEmail = { ...this.newNote }
+            newEmail.sentAt = (new Date()).getTime();
+            noteService.convertNoteToEmail(newEmail)
                 .then(this.save())
         }
     },

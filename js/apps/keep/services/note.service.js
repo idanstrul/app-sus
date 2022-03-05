@@ -126,7 +126,6 @@ function formatNoteAsText(note) {
                 subject: note.info.title,
                 body: note.info.txt,
                 to: '',
-                sentAt: ''
             }
         case 'note-todos':
             const todosStrs = note.info.todos.map(todo => {
@@ -137,14 +136,12 @@ function formatNoteAsText(note) {
                 subject: note.info.title,
                 body: todosStrs.join('\n'),
                 to: '',
-                sentAt: ''
             }
         case 'note-img':
             return {
                 subject: "Bobi and Me",
                 url: "assets/keep/google-dog-search-2014-01.jpg.optimal.jpg",
                 to: '',
-                sentAt: ''
             }
 
     }
