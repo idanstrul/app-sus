@@ -4,6 +4,7 @@ import draftPreview from './draft-preview.cmp.js';
 export default {
     name: 'email-list',
     props: ['emails'],
+    emits: ['refetch'],
     components: { emailPreview, draftPreview },
     template: `
         <section class="email-list">

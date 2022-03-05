@@ -7,7 +7,7 @@ const emailsData = [
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
         sentAt: 1551133930594,
-        to: 'momo@momo.com'
+        to: 'user@appsus.com'
     },
     {
         subject: 'MISSING PERSON!',
@@ -229,6 +229,7 @@ function markEmailAsDeleted(emailId) {
         }
     })
 }
+
 
 
 function getEmptyEmail(email) {

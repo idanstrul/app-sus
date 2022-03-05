@@ -31,10 +31,6 @@ export default {
                 isRead: undefined,
                 status: 'inbox'
             },
-            loggedinUser: {
-                email: 'user@appsus.com',
-                fullname: 'Mahatma Appsus'
-            },
             sorting: undefined,
             addEmailModal: false
         }

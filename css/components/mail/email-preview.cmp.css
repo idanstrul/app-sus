@@ -1,0 +1,25 @@
+.starred {
+    color: yellow;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.starred:hover {
+    cursor: pointer;
+}
+
+.unstarred {
+    color: whitesmoke;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.unstarred:hover {
+    cursor: pointer;
+}
+
+.white {
+    background-color: white;
+}
+
+.gray {
+    background-color: rgba(236, 233, 233, 0.986);
+}

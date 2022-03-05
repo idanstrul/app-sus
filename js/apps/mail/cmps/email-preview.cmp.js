@@ -5,13 +5,12 @@ export default {
     template: `
         <section class="email-preview">
             <div class="email-container">
+                <span role="button" @click="isStared = !isStared" :class="[isStared ? 'starred': 'unstarred']">☆</span>
                 <div @click="$router.push('/email/' + this.email.id)">
-                    <span role="button" @click="isStared = !isStared" v-bind:class="{'starred': isStared, 'unstarred': !isStared}">☆</span>
-                    <div> 
+                    <div @click="isRead = !isRead" :class="[isRead ? 'white': 'gray']"> 
                     <span>{{this.email.subject}}</span> 
                     
                     <span>{{displayEmailTxt}}</span>
-                    <span role="button" @click="isRead = !isRead" v-bind:class="{'white': !isRead, 'gray': isRead}"></span>
                     <span>{{displayTime}}</span>
                 </div>
                 <hr>
@@ -44,6 +43,13 @@ export default {
                 return this.emailBody
             }
         },
+        displayIsRead() {
+            if (this.isRead) {
+                return this.email.style = 'white';
+            } else {
+                return this.email.style = 'gray'
+            }
+        }
     }
 
 }
