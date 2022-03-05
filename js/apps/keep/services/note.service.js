@@ -10,7 +10,8 @@ export const noteService = {
     duplicate,
     remove,
     setMarkClr,
-    createEmailAsNote
+    createEmailAsNote,
+    convertNoteToEmail
 }
 
 const defaultNotes = [
@@ -113,27 +114,38 @@ function createEmailAsNote(email) {
 }
 
 
-function createNoteAsEmail(note) {
-
+function convertNoteToEmail(note) {
+    const formatedNote = formatNoteAsText(note)
+    return emailService.saveEmailDraft(formatedNote)
 }
 
 function formatNoteAsText(note) {
-    if (noteType === 'note-txt') {
-        return note;
-    } else if (noteType === 'note-todos') {
-        const todosStrs = note.info.todos.map(todo => {
-            return `-${todo.txt}, ${(todo.isDone) ? '✅ ' + new Date(todo.doneAt).toLocaleString() : '❌'}.`
-        });
-        return {
-            id: "n103",
-            type: "note-todos",
-            isPinned: false,
-            mark: 'mark-default',
-            info: {
-                title: "Get my stuff together",
-                txt: todosStrs.join('\n')
-
+    switch (note.type) {
+        case 'note-txt':
+            return {
+                subject: note.info.title,
+                body: note.info.txt,
+                to: '',
+                sentAt: ''
             }
-        }
+        case 'note-todos':
+            const todosStrs = note.info.todos.map(todo => {
+                const timeFormated = new Date(todo.doneAt).toLocaleString()
+                return `◼ ${todo.txt}, ${(todo.isDone) ? '✅ Done at: ' + timeFormated : '❌'}.`
+            })
+            return {
+                subject: note.info.title,
+                body: todosStrs.join('\n'),
+                to: '',
+                sentAt: ''
+            }
+        case 'note-img':
+            return {
+                subject: "Bobi and Me",
+                url: "assets/keep/google-dog-search-2014-01.jpg.optimal.jpg",
+                to: '',
+                sentAt: ''
+            }
+
     }
 }

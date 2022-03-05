@@ -15,6 +15,7 @@ export default {
             </div>
             </div>
             <pre>{{email.body}}</pre>
+            <img v-if="" src="" alt="">
             </div>
         </section>
         <section v-else class="loading">loading...</section>

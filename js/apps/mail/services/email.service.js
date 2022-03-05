@@ -5,117 +5,118 @@ const emailsData = [
     {
         subject: 'Miss you!',
         body: 'Would love to catch up sometimes',
+        imgs: [],
         sentAt: 1551133930594,
         to: 'user@appsus.com'
     },
-    {
-        subject: 'MISSING PERSON!',
-        body: 'Where is Puki????',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'WHERE IS MY BAMIA?????',
-        body: 'Hi, I opened the fridge and the lunch box with my bamia was not there. any idea where it is?',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Google Maps Platform',
-        body: 'Hello, it appears that your account has an unpaid debt. In order to solve the matter, please ask CA to stop using our paid services. Sincerely, Google Team.',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Dropbox',
-        body: 'Hello, it appears that your disk space is running out!',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Lorem is very Ipsum.',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'DO YOU WANT TO SAVE A LIFE???',
-        body: 'Hello, each year a wild Lidor gives out his credit card and is left with no money left because of the hunters. If you wish to support the wild Lidor habbitat, donate now!',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem Ipsum',
-        body: 'Is the lorem really ipsum?',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'YES! THIS IS A LOREM SPAM!',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem Lorem',
-        body: 'Lorem is ipsum',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Ipsum Ipsum',
-        body: 'Ipsum is also Lorem???',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Can Muki live without Puki????',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Help!',
-        body: 'Lorem?',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Lorem Lorem Lorem!',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Lorem Ipsum.',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Lorem Lorem Lorem',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Ipsum',
-        body: 'Ipsum Ipsum Ipsum',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'Ipsum',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    },
-    {
-        subject: 'Lorem',
-        body: 'This is the end of the Lorem Spam!',
-        sentAt: 1551133930594,
-        to: 'user@appsus.com'
-    }
+    // {
+    //     subject: 'MISSING PERSON!',
+    //     body: 'Where is Puki????',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'WHERE IS MY BAMIA?????',
+    //     body: 'Hi, I opened the fridge and the lunch box with my bamia was not there. any idea where it is?',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Google Maps Platform',
+    //     body: 'Hello, it appears that your account has an unpaid debt. In order to solve the matter, please ask CA to stop using our paid services. Sincerely, Google Team.',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Dropbox',
+    //     body: 'Hello, it appears that your disk space is running out!',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Lorem is very Ipsum.',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'DO YOU WANT TO SAVE A LIFE???',
+    //     body: 'Hello, each year a wild Lidor gives out his credit card and is left with no money left because of the hunters. If you wish to support the wild Lidor habbitat, donate now!',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem Ipsum',
+    //     body: 'Is the lorem really ipsum?',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'YES! THIS IS A LOREM SPAM!',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem Lorem',
+    //     body: 'Lorem is ipsum',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Ipsum Ipsum',
+    //     body: 'Ipsum is also Lorem???',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Can Muki live without Puki????',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Help!',
+    //     body: 'Lorem?',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Lorem Lorem Lorem!',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Lorem Ipsum.',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Lorem Lorem Lorem',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Ipsum',
+    //     body: 'Ipsum Ipsum Ipsum',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'Ipsum',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // },
+    // {
+    //     subject: 'Lorem',
+    //     body: 'This is the end of the Lorem Spam!',
+    //     sentAt: 1551133930594,
+    //     to: 'user@appsus.com'
+    // }
 
 ];
 
@@ -208,7 +209,7 @@ function createEmailFromDraft(emailId, emailPayload) {
 
 function saveEmailDraft(emailPayload) {
     const emailDraft = getEmptyDraftEmail(emailPayload);
-    storageService.post(EMAIL_STORAGE_KEY, emailDraft);
+    return storageService.post(EMAIL_STORAGE_KEY, emailDraft);
 }
 
 function markEmailAsRead(emailId) {

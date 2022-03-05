@@ -109,7 +109,8 @@ export default {
                 })
         },
         saveAsEmail() {
-
+            noteService.convertNoteToEmail(this.newNote)
+                .then(this.save())
         }
     },
     computed: {
