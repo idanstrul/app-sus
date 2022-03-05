@@ -12,10 +12,11 @@ export default {
         <!-- <pre>
             notes: {{notes}}
             notesForDisplay: {{notesForDisplay}}
+            pinned notes: {{pinnedNotes}}
         </pre> -->
         <note-filter @filtered="setFilter"></note-filter>
-        <note-edit v-if="isEditOn" @edit-closed="isEditOn=false"></note-edit>
-        <note-create v-else @click="isEditOn=true"></note-create>
+        <note-edit v-if="isEditOn" :note-type="editType" @edit-closed="isEditOn=false"></note-edit>
+        <note-create v-else @edit-trigered="openEdit"></note-create>
         
         <h1 v-if="!isFilterOn && !isPinnedNotesEmpty">Pinned:</h1>
         <note-list v-if="!isFilterOn" :notes="pinnedNotes"></note-list>
@@ -37,6 +38,7 @@ export default {
                 search: '',
                 type: ''
             },
+            editType: null,
             isEditOn: false
         }
     },
@@ -58,6 +60,10 @@ export default {
     methods: {
         setFilter(filterBy) {
             this.filterBy = filterBy;
+        },
+        openEdit(editType){
+            this.editType = editType;
+            this.isEditOn = true;
         },
         checkIfNoteIsFiltered(note) {
             const inType = (!this.filterBy.type) ? true :

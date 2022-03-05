@@ -31,9 +31,6 @@ const defaultNotes = [
             url: "assets/keep/google-dog-search-2014-01.jpg.optimal.jpg",
             title: "Bobi and Me"
         },
-        style: {
-            backgroundColor: "#00d"
-        }
     },
     {
         id: "n103",
