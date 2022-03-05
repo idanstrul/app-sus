@@ -10,7 +10,7 @@ export default {
         <section class="email-compose">
            <button @click="closeEmail">X</button>
            <div class="form-container">
-               <form @submit.prevent="createNewEmail">
+               <form @submit.prevent="createNewEmail(); changeFolder('sent')">
                    <label for="to">
                        To
                     </label>
@@ -61,6 +61,9 @@ export default {
             emailService.saveEmailDraft(this.formData);
             this.$emit('refetch');
             this.$emit('close');
+        },
+        changeFolder(folderName) {
+            this.$router.push({ name: 'email', query: { status: folderName } })
         }
     }
 }
