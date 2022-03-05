@@ -58,7 +58,9 @@ export default {
         },
         closeEmail() {
             this.formData.sentAt = (new Date()).getTime();
-            emailService.saveEmailDraft(this.formData);
+            if (!this.isDraft) {
+                emailService.saveEmailDraft(this.formData);
+            }
             this.$emit('refetch');
             this.$emit('close');
         },
