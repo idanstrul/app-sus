@@ -1,5 +1,6 @@
 import { bookService } from "../../../book/js/services/books.service.js";
 import { eventBus } from "../../../../services/eventBus.service.js";
+import { reviewService } from "../services/reviews.service.js";
 
 export default {
     props: ['bookId'],
@@ -47,7 +48,7 @@ export default {
         },
         save() {
             console.log('saving review');
-            bookService.addReview(this.bookId, { ...this.review })
+            reviewService.addReview(this.bookId, { ...this.review })
                 .then(book => {
                     this.book = book
                     this.review = {
@@ -61,7 +62,7 @@ export default {
             console.log('saved review');
         },
         removeComment(reviewId) {
-            bookService.removeReview(this.book, reviewId)
+            reviewService.removeReview(this.bookId, reviewId)
                 .then(book => {
                     this.book = book
                     eventBus.emit('show-msg', { txt: 'Review Removed', type: 'failure' })

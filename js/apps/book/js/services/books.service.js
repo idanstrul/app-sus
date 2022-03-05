@@ -4,6 +4,7 @@ import { bookDataService } from "../services/books-data.service.js";
 
 const BOOKS_KEY = 'books';
 
+
 _createBooks();
 
 
@@ -11,8 +12,6 @@ export const bookService = {
     query,
     get,
     save,
-    addReview,
-    removeReview
 }
 
 function query() {
@@ -38,17 +37,4 @@ function _createBooks() {
     return books;
 }
 
-function addReview(bookId, review) {
-    return get(bookId).then(book => {
-        review.id = utilService.makeId();
-        if (!Array.isArray(book.reviews)) book.reviews = [];
-        book.reviews.push(review);
-        return storageService.put(BOOKS_KEY, book);
-    })
-}
 
-function removeReview(book, reviewId) {
-    const idx = book.reviews.findIndex(review => review.id === reviewId)
-    book.reviews.splice(idx, 1)
-    return storageService.put(BOOKS_KEY, book)
-}

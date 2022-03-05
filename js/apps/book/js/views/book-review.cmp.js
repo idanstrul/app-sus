@@ -1,4 +1,5 @@
 import { bookService } from "../services/books.service.js";
+import { reviewService } from "../services/reviews.service.js";
 
 export default {
     template: `
@@ -9,29 +10,32 @@ export default {
             <span>Comment By: {{review.name}}</span>
             <span>Date: {{review.date}} Rate: {{'💫'.repeat(review.rate)}}</span>
             <span>Description: {{review.desc}}</span>
-            <button @click="removeReview">Delete Review</button>
+            <button @click="removeReview(review.id); $router.push('/book')">Delete Review</button>
         </div> 
         </section>
         `,
     data() {
         return {
-            book: [],
+            book: {},
             reviews: []
 
         }
     },
     created() {
-        console.log('hi');
-        const { bookId } = this.$route.params;
-        bookService.get(bookId)
-            .then(book => {
-                this.book = book;
-                this.reviews = book.reviews
+        reviewService.get(this.bookId)
+            .then(reviews => {
+                this.reviews = reviews;
             });
     },
-    methods: {
-        removeReview() {
+    computed: {
+        bookId: function () {
+            return this.$route.params.bookId;
+        }
 
+    },
+    methods: {
+        removeReview(id) {
+            return reviewService.removeReview(id)
         }
     }
 }
