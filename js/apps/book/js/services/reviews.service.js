@@ -20,6 +20,6 @@ function addReview(bookId, review) {
 }
 
 function removeReview(reviewId) {
-    storageService.remove(REVIEWS_KEY, reviewId).then(res => console.log('lala'));
+    storageService.remove(REVIEWS_KEY, reviewId);
 }
 

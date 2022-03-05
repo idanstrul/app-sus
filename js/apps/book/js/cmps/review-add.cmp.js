@@ -47,7 +47,6 @@ export default {
             return this.review
         },
         save() {
-            console.log('saving review');
             reviewService.addReview(this.bookId, { ...this.review })
                 .then(book => {
                     this.book = book
@@ -59,7 +58,6 @@ export default {
                     }
                     eventBus.emit('show-msg', { txt: 'Review Added', type: 'success' })
                 })
-            console.log('saved review');
         },
         removeComment(reviewId) {
             reviewService.removeReview(this.bookId, reviewId)
