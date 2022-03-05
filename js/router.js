@@ -1,6 +1,8 @@
 import homePage from "./pages/home-page.cmp.js";
 import aboutPage from "./pages/about-page.cmp.js";
 import bookApp from "./apps/book/js/views/book-app.cmp.js";
+import bookDetails from "./apps/book/js/views/book-details.cmp.js";
+import bookReview from "./apps/book/js/views/book-review.cmp.js";
 import noteIndex from "./apps/keep/pages/note-index.cmp.js";
 import emailApp from "./apps/mail/pages/email-app.cmp.js";
 import emailDetails from "./apps/mail/pages/email-details.cmp.js";
@@ -20,6 +22,16 @@ const routes = [
         path: '/book',
         component: bookApp,
         name: 'book'
+    },
+    {
+        path: '/book/:bookId',
+        component: bookDetails,
+        name: 'book-details'
+    },
+    {
+        path: '/book/:bookId/review',
+        component: bookReview,
+        name: 'book-reviews'
     },
     {
         path: '/note',
