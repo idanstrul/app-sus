@@ -11,7 +11,7 @@ import noteEdit from "./note-edit.cmp.js"
 export default {
     props: ['note'],
     template: `
-    <section class="note-preview" :class="this.note.mark">
+    <section class="note-preview main-border" :class="[{'main-shadow': isInHover} ,this.note.mark]" @mouseover="isInHover = true" @mouseleave="isInHover = false">
         <component :is="note.type" :note="note" @done-state-toggled="setDoneState" @click="isEditOn=true"/>
         <div class="controlls">
             <color-marker :note="note" @marker-changed="setMarkClr"></color-marker>
@@ -35,7 +35,8 @@ export default {
     },
     data(){
         return {
-            isEditOn: false
+            isEditOn: false,
+            isInHover: false
         }
     },
     methods: {

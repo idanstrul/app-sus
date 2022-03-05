@@ -1,6 +1,6 @@
 export default {
     template: `
-    <section class="note-filter">
+    <section class="note-filter text-center text-large main-border main-shadow clear-children-style main-input-positioning">
         <input type="text" v-model="filterBy.search">
     </section>
     `,

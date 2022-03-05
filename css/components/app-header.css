@@ -1,3 +1,4 @@
 .app-header{
     border-bottom: solid 1px var(--border-clr) ;
+    margin-bottom: 20px;
 }

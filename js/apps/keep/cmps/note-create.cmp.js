@@ -1,6 +1,6 @@
 export default {
     template: `
-    <section class="note-create">
+    <section class="note-create text-center text-large main-border main-shadow clear-children-style main-input-positioning">
         <form @submit.prevent>
             <input type="text" name="noteInput" @click="$emit('editTrigered', 'note-txt')">
             <button @click="$emit('editTrigered', 'note-todos')">List</button>

@@ -1,0 +1,16 @@
+section.note-filter {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+section.note-filter input {
+    width: 100%;
+}
+
+section.note-filter input::before {
+    content: 'Search...';
+    color: black;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}

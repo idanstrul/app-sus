@@ -6,7 +6,7 @@ export default {
     props: ['note', 'noteType'],
     emits: ['editClosed'],
     template: `
-        <section class="note-edit" :class="newNote.mark">
+        <section class="note-edit text-center text-large main-border main-shadow clear-children-style main-input-positioning" :class="newNote.mark">
             <input class="title" type="text" v-model="newNote.info.title">
             <textarea v-if="newNote.type === 'note-txt'" class="txt" name="note-txt" cols="30" rows="10" v-model="newNote.info.txt"></textarea>
 

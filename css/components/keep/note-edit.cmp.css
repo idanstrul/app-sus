@@ -1,0 +1,10 @@
+textarea.txt {
+    font-size: 1rem;
+}
+
+section.note-edit {
+    display: flex;
+    flex-direction: column;
+    transition: background-color 0.6s;
+}
+

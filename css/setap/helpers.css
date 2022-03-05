@@ -14,6 +14,31 @@
     text-align: center;
 }
 
+.text-large{
+    font-size: 1.3rem;
+}
+
+.main-border {
+    border: solid 1px var(--border-clr);
+    border-radius: 10px;
+}
+
+.main-shadow{
+    box-shadow: 0px 2px 5px 0px #818181;
+}
+
+
+.clear-children-style * {
+    font-size: inherit;
+    border: none;
+    background: none;
+}
+
+.main-input-positioning{
+    max-width: 600px;
+    margin: auto;
+    padding: 10px;
+}
 
 
 

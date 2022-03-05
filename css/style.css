@@ -14,7 +14,15 @@
 
 /* KEEP */
 @import url('./components/keep/note-preview.cmp.css');
+@import url('./components/keep/note-create.cmp.css');
+@import url('./components/keep/note-edit.cmp.css');
+@import url('./components/keep/note-filter.cmp.css');
+
+/* EMAIL */
 @import url('./components/mail/email-preview.cmp.css');
 
 /* PORTAL */
 @import url('./portal/base.css');
+
+/* MEDIA QUERIES: */
+@import url('./setap/mq.css');
