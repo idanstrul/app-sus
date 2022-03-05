@@ -35,20 +35,20 @@ export default {
     // created(){
     //     this.newNote = (this.note)? {...this.note}: this.createNewNote();
     // },
-    data(){
+    data() {
         return {
-            newNote: this.$props.note,
+            newNote: JSON.parse(JSON.stringify(this.$props.note)),
             newTodo: { txt: '', isDone: false, doneAt: null },
             test: null
         }
     },
     methods: {
-        setDoneAt(idx){
+        setDoneAt(idx) {
             const todos = this.newNote.info.todos
-            const todo = (idx === todos.length)? this.newTodo: todos[idx];
-            todo.doneAt = (todo.isDone)? Date.now(): null;
+            const todo = (idx === todos.length) ? this.newTodo : todos[idx];
+            todo.doneAt = (todo.isDone) ? Date.now() : null;
         },
-        createNewNote(){
+        createNewNote() {
             return {
                 id: "",
                 type: "note-todos",
@@ -63,31 +63,31 @@ export default {
                 }
             }
         },
-        removeTodo(idx){
+        removeTodo(idx) {
             this.newNote.info.todos.splice(idx, 1)
         },
-        addTodo(){
+        addTodo() {
             if (!this.newTodo.txt) return
             this.newNote.info.todos.push(this.newTodo)
             this.newTodo = { txt: '', isDone: false, doneAt: null }
         },
-        setMarkClr(markClr){
+        setMarkClr(markClr) {
             this.newNote.mark = markClr;
         },
-        save(){
+        save() {
             this.addTodo()
             noteService.save(this.newNote)
                 .then(newNote => {
-                    eventBus.emit('noteSaved',newNote)
+                    eventBus.emit('noteSaved', newNote)
                     this.newNote = this.createNewNote()
                     this.$emit('editClosed')
                 })
         }
     },
     computed: {
-        todosIterator(){
+        todosIterator() {
             const todos = this.newNote.info.todos
-            return (todos.length)? todos: 1;
+            return (todos.length) ? todos : 1;
             // if (todos.length) return todos
             // return 1
         }
