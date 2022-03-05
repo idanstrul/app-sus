@@ -130,7 +130,8 @@ export const emailService = {
     markEmailAsRead,
     markEmailAsDeleted,
     saveNewEmail,
-    saveEmailDraft
+    saveEmailDraft,
+    createEmailFromDraft
 };
 
 const criterionFilter = {
@@ -195,6 +196,15 @@ function saveNewEmail(emailPayload) {
     const newEmail = getEmptySentEmail(emailPayload);
     storageService.post(EMAIL_STORAGE_KEY, newEmail);
 }
+
+function createEmailFromDraft(emailId, emailPayload) {
+    get(emailId).then(email => {
+        Object.assign(email, emailPayload);
+        email.status = 'sent';
+        storageService.put(EMAIL_STORAGE_KEY, email)
+    });
+}
+
 
 function saveEmailDraft(emailPayload) {
     const emailDraft = getEmptyDraftEmail(emailPayload);

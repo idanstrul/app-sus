@@ -12,7 +12,7 @@ export default {
             <button @click="addEmailModal = true">Add new Email</button>
             <email-filter @filter-list="handleFilterList" />
             <email-stats :unread-emails="unreadEmails" :sorting="sorting" @sorting-change="handleSortingChange" />
-            <email-compose v-if="addEmailModal" @close="addEmailModal = false" />
+            <email-compose v-if="addEmailModal" @close="addEmailModal = false" @refetch="getEmails" />
             <email-folder-list />
             <email-list :emails="emails"/>
         </section>
@@ -56,6 +56,10 @@ export default {
         },
         handleSortingChange(payload) {
             this.sorting = payload;
+        },
+        handleRefetch() {
+            console.log('refetch');
+            this.getEmails();
         }
     },
     watch: {
