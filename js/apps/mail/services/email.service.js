@@ -265,6 +265,11 @@ function getEmptyDraftEmail(email) {
     };
 }
 
+function saveNoteAsEmail(note) {
+    getEmptyDraftEmail
+}
+
+
 function _createEmail(email) {
     const createdEmail = getEmptyEmail(email);
     return createdEmail;

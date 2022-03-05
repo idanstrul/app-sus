@@ -111,3 +111,29 @@ function createEmailAsNote(email) {
     }
     return save(newEmailNote);
 }
+
+
+function createNoteAsEmail(note) {
+
+}
+
+function formatNoteAsText(note) {
+    if (noteType === 'note-txt') {
+        return note;
+    } else if (noteType === 'note-todos') {
+        const todosStrs = note.info.todos.map(todo => {
+            return `-${todo.txt}, ${(todo.isDone) ? '✅ ' + new Date(todo.doneAt).toLocaleString() : '❌'}.`
+        });
+        return {
+            id: "n103",
+            type: "note-todos",
+            isPinned: false,
+            mark: 'mark-default',
+            info: {
+                title: "Get my stuff together",
+                txt: todosStrs.join('\n')
+
+            }
+        }
+    }
+}

@@ -31,6 +31,7 @@ export default {
                 <color-marker :note="newNote" @marker-changed="setMarkClr"></color-marker>
                 <button @click="$emit('editClosed')">Cancel</button>
                 <button @click="save">Save</button>
+                <button v-if="newNote.id" @click="saveAsEmail">Save As Email</button>
             </div>
         </section>
         `,
@@ -42,7 +43,7 @@ export default {
     // },
     data() {
         return {
-            newNote: (this.note)? JSON.parse(JSON.stringify(this.$props.note)): this.createNewNote(),
+            newNote: (this.note) ? JSON.parse(JSON.stringify(this.$props.note)) : this.createNewNote(),
             newTodo: { txt: '', isDone: false, doneAt: null },
             test: null
         }
@@ -53,13 +54,13 @@ export default {
             const todo = (idx === todos.length) ? this.newTodo : todos[idx];
             todo.doneAt = (todo.isDone) ? Date.now() : null;
         },
-        setImg(ev){
-            console.log('ev.target.files[0] is:',  ev.target.files[0])
-            console.log('ev.target.value is:',  ev.target.value)
+        setImg(ev) {
+            console.log('ev.target.files[0] is:', ev.target.files[0])
+            console.log('ev.target.value is:', ev.target.value)
         },
         createNewNote() {
             var info;
-            switch (this.noteType){
+            switch (this.noteType) {
                 case 'note-txt':
                     info = {
                         title: '',
@@ -106,6 +107,9 @@ export default {
                     this.newNote = this.createNewNote()
                     this.$emit('editClosed')
                 })
+        },
+        saveAsEmail() {
+
         }
     },
     computed: {
