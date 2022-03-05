@@ -1,7 +1,6 @@
 import { utilService } from "../../../services/util.service.js";
 import { storageService } from "../../../services/async-storage.service.js";
-import notePreviewCmp from "../../keep/cmps/note-preview.cmp.js";
-
+import { noteService } from "../../keep/services/note.service.js";
 const emailsData = [
     {
         subject: 'Miss you!',
@@ -131,7 +130,8 @@ export const emailService = {
     markEmailAsDeleted,
     saveNewEmail,
     saveEmailDraft,
-    createEmailFromDraft
+    createEmailFromDraft,
+    saveEmailAsNote
 };
 
 const criterionFilter = {
@@ -230,6 +230,10 @@ function markEmailAsDeleted(emailId) {
     })
 }
 
+
+function saveEmailAsNote(email) {
+    return noteService.createEmailAsNote(email);
+}
 
 
 function getEmptyEmail(email) {

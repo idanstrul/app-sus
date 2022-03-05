@@ -10,6 +10,7 @@ export default {
             <div>
                 <span role="button" @click="markEmailAsDeleted">🗑</span>
                 <button @click="$router.push({ name: 'email' })">⮐</button>
+                <button @click="saveAsNote">Save as note</button>
                 <span>{{displayTime}}</span>
             </div>
             </div>
@@ -51,6 +52,9 @@ export default {
             emailService.markEmailAsDeleted(this.emailId);
             this.$router.push({ name: 'email' });
         },
+        saveAsNote() {
+            emailService.saveEmailAsNote(this.email).then(note => { console.log('email noted', note); })
+        }
     },
     watch: {
         emailId: {
