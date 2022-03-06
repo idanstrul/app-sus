@@ -35,3 +35,19 @@ export default {
         }    
     }
 }
+
+
+// <select name="mark-clr" v-model="markClr" @change="$emit('markerChanged', markClr)">
+// <option value="mark-default" style="color: var(--mark-clr-default)">●</option>
+// <option value="mark-red" style="color: var(--mark-clr-red)">●</option>
+// <option value="mark-orange" style="color: var(--mark-clr-orange)">●</option>
+// <option value="mark-yellow" style="color: var(--mark-clr-yellow)">●</option>
+// <option value="mark-green" style="color: var(--mark-clr-green)">●</option>
+// <option value="mark-green-blue" style="color: var(--mark-clr-green-blue)">●</option>
+// <option value="mark-blue" style="color: var(--mark-clr-blue)">●</option>
+// <option value="mark-dark-blue" style="color: var(--mark-clr-dark-blue)">●</option>
+// <option value="mark-purple" style="color: var(--mark-clr-purple)">●</option>
+// <option value="mark-pink" style="color: var(--mark-clr-pink)">●</option>
+// <option value="mark-brown" style="color: var(--mark-clr-brown)">●</option>
+// <option value="mark-grey" style="color: var(--mark-clr-grey)">●</option>
+// </select>

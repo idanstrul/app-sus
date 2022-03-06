@@ -1,7 +1,10 @@
 export default {
     template: `
     <section class="note-filter text-center text-large main-border main-shadow clear-children-style main-input-positioning">
-        <input type="text" v-model="filterBy.search">
+        <label class="filter-label" :class="{'hide-label': filterBy.search}">
+            <input type="text" v-model="filterBy.search">
+            <span class="iconify" data-icon="carbon:search"></span>
+        </label>
     </section>
     `,
     data() {

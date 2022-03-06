@@ -1,10 +1,65 @@
-textarea.txt {
-    font-size: 1rem;
-}
-
 section.note-edit {
     display: flex;
     flex-direction: column;
     transition: background-color 0.6s;
 }
 
+section.note-edit label.note-txt{
+    font-size: 1rem;
+}
+
+section.note-edit label.note-txt::before{
+    content: 'Write a note...';
+}
+
+textarea.txt {
+    font-size: 1rem;
+    resize: none;
+    width: 100%;
+    display: inline-table;
+    font-family: inherit;
+}
+
+section.note-edit input.title {
+    width: 100%;
+}
+
+section.note-edit label{
+    position: relative;
+}
+
+section.note-edit label::before{
+    position: relative;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: text;
+}
+
+section.note-edit label.note-title{
+    margin-bottom: 20px;
+}
+
+section.note-edit label.note-title::before{
+    content: 'Title';
+}
+
+section.note-edit .controls {
+    text-align: end;
+}
+
+.todo input{
+    flex-grow: 1;
+}
+
+div.img-input {
+    display: contents;
+}
+
+section.note-edit label.img-url::before{
+    content: 'Enter URL...';
+}
+
+section.note-edit label.img-url input{
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+section.note-create{
+    display: flex;
+
+}
+
+section.note-create .note-creator-label{
+    flex-grow: 1;
+    position: relative;
+}
+
+section.note-create .note-creator-label::before{
+    content: 'Write a note...';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    cursor: text;
+}
+
+section.note-create input{
+    width: 100%;
+}

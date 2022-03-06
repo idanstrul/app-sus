@@ -11,6 +11,10 @@ img{
     width: 150px;
 }
 
+select{
+    cursor: pointer;
+}
+
 button{
     border: none;
     background: none;

@@ -1,15 +1,18 @@
 section.note-filter {
     margin-bottom: 20px;
-    position: relative;
 }
 
 section.note-filter input {
-    width: 100%;
+    flex-grow: 1;
 }
 
-section.note-filter input::before {
+section.note-filter .filter-label{
+    position: relative;
+    display: flex;
+}
+
+section.note-filter .filter-label::before {
     content: 'Search...';
-    color: black;
     position: absolute;
     left: 0;
     bottom: 0;

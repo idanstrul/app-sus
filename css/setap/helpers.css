@@ -40,6 +40,10 @@
     padding: 10px;
 }
 
+.hide-label::before{
+    display: none;
+}
+
 
 
 .mark-default{

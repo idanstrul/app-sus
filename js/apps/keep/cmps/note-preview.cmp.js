@@ -13,11 +13,18 @@ export default {
     template: `
     <section class="note-preview main-border" :class="[{'main-shadow': isInHover} ,this.note.mark]" @mouseover="isInHover = true" @mouseleave="isInHover = false">
         <component :is="note.type" :note="note" @done-state-toggled="setDoneState" @click="isEditOn=true"/>
-        <div class="controlls">
+        <div class="controlls text-large clear-children-style">
             <color-marker :note="note" @marker-changed="setMarkClr"></color-marker>
-            <button @click="togglePin">Pin</button>
-            <button @click="duplicate">Duplicate</button>
-            <button @click="remove">Remove</button>
+            <button @click="togglePin">
+                <span v-if="!note.isPinned" class="iconify" data-icon="bi:pin" title="pin"></span>
+                <span v-else class="iconify" data-icon="bi:pin-fill" title="unpin"></span>
+            </button>
+            <button @click="duplicate" title="Duplicate">
+                <span class="iconify" data-icon="bx:duplicate"></span>
+            </button>
+            <button @click="remove" title="Remove">
+                <span class="iconify" data-icon="fa:trash-o"></span>
+            </button>
         </div>
         <app-modal v-if="isEditOn">
             <note-edit :note="note" @edit-closed="isEditOn=false"></note-edit>

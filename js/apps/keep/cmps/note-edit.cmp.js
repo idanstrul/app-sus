@@ -7,23 +7,29 @@ export default {
     emits: ['editClosed'],
     template: `
         <section class="note-edit text-center text-large main-border main-shadow clear-children-style main-input-positioning" :class="newNote.mark">
-            <input class="title" type="text" v-model="newNote.info.title">
-            <textarea v-if="newNote.type === 'note-txt'" class="txt" name="note-txt" cols="30" rows="10" v-model="newNote.info.txt"></textarea>
+            <label class="note-title" :class="{'hide-label': newNote.info.title}">
+                <input class="title" type="text" v-model="newNote.info.title">
+            </label>
+            <label v-if="newNote.type === 'note-txt'" class="note-txt" :class="{'hide-label': newNote.info.txt}">
+                <textarea class="txt" name="note-txt" cols="30" rows="3" v-model="newNote.info.txt" autofocus></textarea>
+            </label>
 
-            <div v-if="newNote.type === 'note-todos'" v-for="(todo, idx) in newNote.info.todos" class="todo">
+            <div v-if="newNote.type === 'note-todos'" v-for="(todo, idx) in newNote.info.todos" class="todo flex">
                 <input type="checkbox" @change="setDoneAt(idx)" v-model="newNote.info.todos[idx].isDone">
                 <input type="text" v-model="todo.txt">
                 <button @click="removeTodo(idx)">X</button>
             </div>
-            <div v-if="newNote.type === 'note-todos'" class="todo new-todo">
+            <div v-if="newNote.type === 'note-todos'" class="todo new-todo flex">
                 <input type="checkbox" @change="setDoneAt(newNote.info.todos.length)" v-model="newTodo.isDone" >
                 <input type="text" v-model="newTodo.txt">
                 <button @click="addTodo">+</button>
             </div>
 
-            <div v-if="newNote.type === 'note-img'">
+            <div v-if="newNote.type === 'note-img'" class="img-input">
                 <!-- <input type="file" accept="image/*,.pdf" @change="setImg"> -->
-                <input type="url" v-model="newNote.info.url">
+                <label class="img-url" :class="{'hide-label': newNote.info.url}">
+                    <input type="url" v-model="newNote.info.url">
+                </label>
                 <img :src="newNote.info.url" alt="No Image found">
             </div>
 
@@ -115,12 +121,10 @@ export default {
                 .then(this.save())
         }
     },
-    computed: {
-        todosIterator() {
-            const todos = this.newNote.info.todos
-            return (todos.length) ? todos : 1;
-            // if (todos.length) return todos
-            // return 1
-        }
-    }
+    // computed: {
+    //         isSavePosible(){
+    //             return 
+    //         }
+    //     }
+    
 }
